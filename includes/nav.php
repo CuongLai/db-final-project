@@ -12,6 +12,12 @@
         print ' class="activePage" ';
       }
       print '><a href="createBracket.php">Start a bracket</a></li>';
+
+      print '<li ';
+      if ($PATH_PARTS['filename'] == 'login') {
+        print ' class="activePage" ';
+      }
+      print '><a href="./login.php">Log In!</a></li>';
     ?>
   </ol>
 </nav>

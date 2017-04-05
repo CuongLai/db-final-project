@@ -1,4 +1,31 @@
+//IMPORTS OTHER SASS FILES (TREAT THESE AS CONSTANTS)
+@import includes/colors
+@import includes/reset
+
+
+//REUSABLE CLASSES
+.centerText
+  text-align: center
+  width: 50%
+  margin: 0 auto 0 auto
+
+.centerImg
+    display: block
+    width: 50%
+    margin: auto
+
+//STAR SELECTOR
 *
-  font-family: monospace
-  padding: 0
-  margin: 0
+  font-family: 'Oswald', sans-serif
+  color: $white
+
+//SPECIFIC SELECTORS
+body
+  background:
+    color: $slate
+
+.welcomeH1
+  text-transform: uppercase
+  color: $melon
+  font-size: 4em
+  padding-top: 10px

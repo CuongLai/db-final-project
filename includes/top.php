@@ -11,7 +11,7 @@
       <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/sin/trunk/html5.js"></script>
       <![endif]-->
-      <link rel="favicon" href=".../css/images/favicon.png">
+      <link rel="shortcut icon" type="image/png" href="css/images/favicon.png">
       <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
       <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen">
 

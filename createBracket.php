@@ -1,4 +1,7 @@
-<?php require "includes/top.php"; ?>
+<?php
+require "includes/top.php";
+if (isset($_SESSION['user'])) {
+?>
 <div class="welcomeContainer">
   <h1 class="centerText customH1"> Please create your bracket</h1>
 </div>
@@ -26,4 +29,10 @@
 
 </article>
 
-<?php require "includes/footer.php"; ?>
+<?php
+    require "includes/footer.php";
+  }
+  else {
+    header('Location:login.php');
+  }
+?>

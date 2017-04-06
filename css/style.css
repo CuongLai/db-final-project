@@ -35,7 +35,7 @@
 
 * {
   font-family: 'Oswald', sans-serif;
-  color: #FFEEED;
+  color: #06070E;
   transition: all 0.5s ease-in-out;
 }
 
@@ -59,8 +59,10 @@ body {
 }
 
 .navContainer {
+  box-shadow: 10px 1px 1px 1px #06070E;
   display: block;
-  background-color: rgba(6, 7, 14, 0.5);
+  background-color: #3b7066;
+  border-bottom: #282828 2px solid;
 }
 
 .navContainer ul {

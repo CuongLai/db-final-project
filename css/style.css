@@ -5,6 +5,10 @@
   vertical-align: baseline;
 }
 
+.floatRight {
+  float: right;
+}
+
 .textShadow {
   text-shadow: -1px 2px 7px rgba(40, 40, 40, 0.29);
 }
@@ -31,6 +35,15 @@
 
 .customH1 {
   font-size: 2.7em;
+}
+
+.customH2 {
+  font-size: 2em;
+}
+
+.formGroup {
+  display: block;
+  padding: 10px;
 }
 
 * {

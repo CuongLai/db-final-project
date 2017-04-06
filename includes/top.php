@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,5 +27,5 @@
 
   <?php
     print '<body id="' . $PATH_PARTS['filename'] . '">';
-    include 'nav.php';
+    require 'nav.php';
   ?>

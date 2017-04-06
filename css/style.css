@@ -26,6 +26,8 @@
 }
 
 .mainBtn {
+  border-radius: 4px;
+  padding: 10px;
   background-color: #94A187;
   color: #06070E;
   font-size: 1.2em;
@@ -72,6 +74,8 @@ body {
 }
 
 .navContainer {
+  padding-left: 20px;
+  padding-right: 20px;
   box-shadow: 10px 1px 1px 1px #06070E;
   display: block;
   background-color: #3b7066;
@@ -88,6 +92,10 @@ body {
   float: left;
 }
 
+.navContainer li:first-child {
+  border-right: 2px solid #828181;
+}
+
 .navContainer li:last-child {
   float: right;
 }
@@ -102,4 +110,9 @@ body {
 
 .navContainer li a:hover {
   color: #94A187;
+}
+
+.navLogo {
+  width: 40px;
+  height: 40px;
 }

@@ -24,6 +24,8 @@
     margin: auto
 
 .mainBtn
+  border-radius: 4px
+  padding: 10px
   background-color: $olive
   color: $black
   font-size: 1.2em
@@ -68,6 +70,8 @@ body
 
 //NAV SECTION
 .navContainer
+  padding-left: 20px
+  padding-right: 20px
   box-shadow: 10px 1px 1px 1px $black
   display: block
   background-color: $lightslate
@@ -78,6 +82,8 @@ body
     display: inline-block
   li
     float: left
+  li:first-child
+    border-right: 2px solid $lightgray
   li:last-child
     float: right
   li a
@@ -88,3 +94,7 @@ body
     text-decoration: none
   li a:hover
     color: $olive
+
+.navLogo
+  width: 40px
+  height: 40px

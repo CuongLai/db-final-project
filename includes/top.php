@@ -27,7 +27,8 @@
 
   <?php
     print '<body id="' . $PATH_PARTS['filename'] . '">';
-    if ($PATH_PARTS['filename'] != 'login' && $PATH_PARTS['filename'] != 'logout') {
+    $location = $PATH_PARTS['filename'];
+    if ($location != 'login' && $location != 'logout' && $location != 'signup') {
       require 'nav.php';
     }
   ?>

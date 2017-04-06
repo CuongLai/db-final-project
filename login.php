@@ -10,11 +10,12 @@
   <input type="password" class="login" placeholder="Please enter your password..." value="admin" name="password">
 
   <input type="submit" class="loginBtn" value="Log In" name="login">
+  <a href="signup.php">Register</a>
 </form>
 
 <?php
   if (isset($_POST['login'])) {
-    $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
+    $_SESSION['user'] = '';
 
     $data = array();
     $username = htmlentities($_POST["username"], ENT_QUOTES, "UTF-8");
@@ -28,13 +29,14 @@
       $results = $thisDatabaseReader->select($query, $data);
 
       if (!empty($results)) {
-        if ($results[0]['fldPassword'] == $password) {
-          session_write_close();
-          header('Location:index.php');
+        foreach ($results as $result) {
+          if ($result['fldPassword'] == $password) {
+            $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
+            session_write_close();
+            header('Location:index.php');
+          }
         }
-        else {
-          echo 'Wrong username or password';
-        }
+        echo 'Wrong username or password';
       }
       else {
         echo 'Wrong username or password';

@@ -14,6 +14,12 @@
         }
         print '><a href="createBracket.php">Start a bracket</a></li>';
 
+        print '<li ';
+        if ($PATH_PARTS['filename'] == 'viewBrackets') {
+          print ' class="activePage" ';
+        }
+        print '><a href="viewBrackets.php">Your Brackets</a></li>';
+
         if (!isset($_SESSION['user'])) {
           print '<li ';
           if ($PATH_PARTS['filename'] == 'login') {

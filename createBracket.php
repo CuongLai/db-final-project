@@ -3,7 +3,7 @@ require "includes/top.php";
 if (isset($_SESSION['user'])) {
 ?>
 <div class="welcomeContainer">
-  <h1 class="centerText customH1"> Please create your bracket</h1>
+  <h1 class="centerText customH1">Please create your bracket</h1>
 </div>
 <article>
 <form action="#" method="post">

@@ -20,6 +20,16 @@
         }
         print '><a href="viewBrackets.php">Your Brackets</a></li>';
 
+        if (isset($_SESSION['user'])) {
+          if (isset($_SESSION['admin'])) {
+            print '<li ';
+            if ($PATH_PARTS['filename'] == 'confirmUser') {
+              print ' class="activePage" ';
+            }
+            print '><a href="./confirmUser.php">Pending Requests</a></li>';
+          }
+        }
+
         if (!isset($_SESSION['user'])) {
           print '<li ';
           if ($PATH_PARTS['filename'] == 'login') {

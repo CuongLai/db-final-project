@@ -39,6 +39,9 @@
         foreach ($results as $result) {
           if ($result['fldPassword'] == $password) {
             $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
+            if ($result['fldAdmin'] == 1) {
+              $_SESSION['admin'] = true;
+            }
             session_write_close();
             header('Location:index.php');
           }

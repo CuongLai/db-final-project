@@ -14,17 +14,18 @@
   if (!empty($results)) {
     foreach ($results as $result) {
       print '<tr>';
-      print '<th>' . $result['fldBracketName'] . '</th>';
+      print '<td>' . $result['fldBracketName'] . '</td>';
       if ($result['fldElim'] == 0) {
-        print '<th>Single</th>';
+        print '<td>Single</td>';
       }
       else {
-        print '<th>Double</th>';
+        print '<td>Double</td>';
       }
-      print '<th>' . $result['fldNumMatches'] . '</th>';
+      print '<td>' . $result['fldNumMatches'] . '</td>';
       print '</tr>';
     }
   }
+  print '</table>';
   }
   else {
     header('Location:login.php');

@@ -30,17 +30,22 @@ require "includes/top.php";
     $data[] = $username;
     $data[] = $password;
 
+    $error = false;
+
     $query = 'SELECT * FROM tblUsers';
     $results = $thisDatabaseReader->select($query, '');
     foreach ($results as $result) {
       if ($result['fldUsername'] == $username) {
-        echo 'Username already exists! Please choose another one.';
+        $error = true;
       }
-      else {
-        $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
-        session_write_close();
-        header('Location:index.php');
-      }
+    }
+    if ($error === false) {
+      $query = 'INSERT INTO tblPending SET fldUser=?, fldPass=?';
+      $results = $thisDatabaseWriter->insert($query, $data);
+      header('Location:confirmUser.php');
+    }
+    else {
+      echo 'Username already exists! Please choose another one.';
     }
   }
   require "includes/footer.php";

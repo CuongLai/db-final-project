@@ -1,15 +1,22 @@
 <?php require 'includes/top.php'; ?>
 
 <form action="#" method="post">
-  <h1>Log in to create and access your brackets!</h1>
+  <div class="welcomeContainer">
+    <h1 class="centerText customH1">Log in to</h1>
+    <img class="centerImg" alt="Brakets logo" src="css/images/logo.png">
+  </div>
 
-  <label>Username: </label>
-  <input type="text" class="login" placeholder="Please enter your username..." value="cuong" name="username">
+  <div class="formGroup centerText">
+    <h2 class="customH2">Username:</h2>
+    <input type="text" name="username" value="cuong" />
+  </div>
 
-  <label>Password: </label>
-  <input type="password" class="login" placeholder="Please enter your password..." value="admin" name="password">
+  <div class="formGroup centerText">
+    <h2 class="customH2">Password:</h2>
+    <input type="password" name="password" value="admin" />
+  </div>
 
-  <input type="submit" class="loginBtn" value="Log In" name="login">
+  <input class="mainBtn formGroup centerText" id="btnSubmit" name="login" type="submit" value="Log In" >
   <a href="signup.php">Register</a>
 </form>
 

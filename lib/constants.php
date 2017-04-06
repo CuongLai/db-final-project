@@ -1,5 +1,5 @@
 <?php
-define('DATABASE_NAME', 'CHLAI_lab1');
+define('DATABASE_NAME', 'CHLAI_brakets');
 define('DATABASE_READER', 'chlai_reader');
 define('DATABASE_READER_PWD', 'r');
 define('DATABASE_WRITER_PWD', 'w');

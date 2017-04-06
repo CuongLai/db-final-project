@@ -4,6 +4,9 @@
 
 
 //REUSABLE CLASSES
+.textShadow
+  text-shadow: -1px 2px 7px rgba(40, 40, 40, 0.29)
+
 .centerText
   text-align: center
   width: 50%
@@ -13,19 +16,55 @@
     display: block
     width: 50%
     margin: auto
-
+.mainBtn
+  background-color: $olive
+  color: $black
+  font-size: 1.2em
+  text-transform: uppercase
+  border: $gray
 //STAR SELECTOR
 *
   font-family: 'Oswald', sans-serif
   color: $white
+
+  transition: all 0.5s ease-in-out
 
 //SPECIFIC SELECTORS
 body
   background:
     color: $slate
 
+//INDEX SECTION
 .welcomeH1
   text-transform: uppercase
   color: $melon
   font-size: 4em
-  padding-top: 10px
+
+.welcomeContainer
+  padding: 10px
+  display: block
+  box-shadow: 10px 1px 1px 1px $black
+  border-top: 1px solid $tan
+  border-bottom: 1px solid $tan
+  background-color: $lightgray
+
+//NAV SECTION
+.navContainer
+  display: block
+  background-color: rgba(6, 7, 14, .5)
+  ul
+    width: 100%
+    list-style-type: none
+    display: inline-block
+  li
+    float: left
+  li:last-child
+    float: right
+  li a
+    display: block
+    color: $white
+    text-align: center
+    padding: 10px 12px
+    text-decoration: none
+  li a:hover
+    color: $olive

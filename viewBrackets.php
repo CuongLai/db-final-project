@@ -9,12 +9,14 @@
     <th>Bracket Name</th>
     <th>Elimination Type</th>
     <th># of Players</th>
+    <th>Status</th>
   </tr>
 <?php
   if (!empty($results)) {
     foreach ($results as $result) {
-      print '<tr>';
-      print '<td>' . $result['fldBracketName'] . '</td>';
+      print '<tr href="bracket.php?id=' . $result['pmkBracketId'] . '">';
+      print '<td><a href="bracket.php?id=' . $result['pmkBracketId'] . '">';
+      print $result['fldBracketName'] . '</a></td>';
       if ($result['fldElim'] == 0) {
         print '<td>Single</td>';
       }
@@ -22,6 +24,12 @@
         print '<td>Double</td>';
       }
       print '<td>' . $result['fldNumMatches'] . '</td>';
+      if ($result['fldCompletion'] == 0) {
+        print '<td>In-progress</td>';
+      }
+      else {
+        print '<td>Completed</td>';
+      }
       print '</tr>';
     }
   }

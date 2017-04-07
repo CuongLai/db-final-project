@@ -5,6 +5,13 @@
   vertical-align: baseline;
 }
 
+.clear {
+  clear: both;
+  content: "";
+  display: table;
+  width: 100%;
+}
+
 .floatRight {
   float: right;
 }
@@ -29,10 +36,20 @@
   border-radius: 4px;
   padding: 10px;
   background-color: #94A187;
-  color: #06070E;
+  border: 2px solid #282828;
+}
+
+.mainBtn:hover {
+  transform: scale(1.08);
+  background-color: #29524A;
+  box-shadow: -1px 2px 7px rgba(40, 40, 40, 0.49);
+}
+
+.linkBtn {
+  text-decoration: none;
+  color: #FFEEED;
   font-size: 1.2em;
   text-transform: uppercase;
-  border: #282828;
 }
 
 .customH1 {
@@ -70,7 +87,18 @@ body {
   box-shadow: 10px 1px 1px 1px #06070E;
   border-top: 1px solid #C5AFA0;
   border-bottom: 1px solid #C5AFA0;
-  background-color: #828181;
+  background-color: rgba(230, 229, 229, 0.2);
+}
+
+.subH1 {
+  color: #FFEEED;
+}
+
+.subHeading {
+  color: #E9BCB7;
+  width: 560px;
+  text-align: justify;
+  padding-left: 15px;
 }
 
 .navContainer {

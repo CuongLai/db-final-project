@@ -4,6 +4,11 @@
 
 
 //REUSABLE CLASSES
+.clear
+  clear: both
+  content: ""
+  display: table
+  width: 100%
 .floatLeft
   float:left
 
@@ -27,11 +32,16 @@
   border-radius: 4px
   padding: 10px
   background-color: $olive
-  color: $black
+  border: 2px solid $gray
+  &:hover
+    transform: scale(1.08)
+    background-color: $slate
+    box-shadow: -1px 2px 7px rgba(40, 40, 40, 0.49)
+.linkBtn
+  text-decoration: none
+  color: $white
   font-size: 1.2em
   text-transform: uppercase
-  border: $gray
-
 .customH1
   font-size: 2.7em
 
@@ -66,7 +76,15 @@ body
   box-shadow: 10px 1px 1px 1px $black
   border-top: 1px solid $tan
   border-bottom: 1px solid $tan
-  background-color: $lightgray
+  background-color: rgba(230, 229, 229, .2)
+.subH1
+  color: $white
+
+.subHeading
+  color: $melon
+  width: 560px
+  text-align: justify
+  padding-left: 15px
 
 //NAV SECTION
 .navContainer

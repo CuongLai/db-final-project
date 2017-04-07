@@ -4,11 +4,21 @@
   print '<h1 class="welcomeH1 centerText textShadow"> Welcome to</h1>';
   print '<img class="centerImg" src="./css/images/logo.png" alt="logo for our website" />';
   print '<div class="clear">';
-  print '<h1 class="floatLeft customH1 subH1">Ready to get your tournament going?</h1>';
-  print '<p class="floatleft customH2 subHeading">Use our simple bracket manager to make your tournament! For any of your favorite games.</p>';
-  print '</div>';
-  print '<button class="mainBtn"><a class="linkBtn" href="signUp.php">Sign up</a></button>';
-  print '</div>';
+
+//Added this stuff. see if it appears for you
+  if (!isset($_SESSION['user'])) {
+    print '<h1 class="floatLeft customH1 subH1">Ready to get your tournament going?</h1>';
+    print '<p class="floatleft customH2 subHeading">Use our simple bracket manager to make your tournament! For any of your favorite games.</p>';
+    print '</div>';
+    print '<button class="mainBtn"><a class="linkBtn" href="signUp.php">Sign up</a></button>';
+    print '</div>';
+  }
+  else {
+    print '<h1 class="floatLeft customH1 subH1">Start a bracket for your tournament!</h1>';
+    print '</div>';
+    print '<button class="mainBtn"><a class="linkBtn" href="createBracket.php">Create</a></button>';
+    print '</div>';
+  }
 ?>
 
 <?php

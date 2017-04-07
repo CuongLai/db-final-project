@@ -5,6 +5,12 @@
   vertical-align: baseline;
 }
 
+* {
+  font-family: 'Oswald', sans-serif;
+  color: #06070E;
+  transition: all 0.3s ease-in-out;
+}
+
 .clear {
   clear: both;
   content: "";
@@ -56,19 +62,14 @@
   font-size: 2.7em;
 }
 
-.customH2 {
-  font-size: 2em;
+.customP {
+  font-family: 'Merriweather', serif;
+  font-size: 1.3em;
 }
 
 .formGroup {
   display: block;
   padding: 10px;
-}
-
-* {
-  font-family: 'Oswald', sans-serif;
-  color: #06070E;
-  transition: all 0.5s ease-in-out;
 }
 
 body {

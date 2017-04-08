@@ -3,7 +3,7 @@
   print '<div class="welcomeContainer">';
   print '<div class="middle-80">';
   print '<h1 class="welcomeH1 centerText textShadow"> Welcome to</h1>';
-  print '<img class="centerImg" src="./css/images/logo.png" alt="logo for our website" />';
+  print '<img class="centerImg welcomeImg" src="./css/images/logo.png" alt="logo for our website" />';
   print '<div class="clear">';
 
 //Added this stuff. see if it appears for you
@@ -17,6 +17,8 @@
     print '</div>';
     print '</div>';
     print '<button class="mainBtn"><a class="linkBtn" href="signUp.php">Sign up</a></button>';
+    print '<button class="secondaryBtn"><a class="linkBtn secondaryLinkBtn" href="#">Learn more</a></button>';
+    print '</div>';
     print '</div>';
   }
   else {

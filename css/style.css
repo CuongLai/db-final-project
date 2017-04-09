@@ -58,7 +58,7 @@
 .mainBtn {
   margin: 5px;
   border-radius: 4px;
-  padding: 10px;
+  padding: 8px;
   background-color: #94A187;
   border: 2px solid #282828;
 }
@@ -72,7 +72,7 @@
 .secondaryBtn {
   margin: 5px;
   border-radius: 4px;
-  padding: 10px;
+  padding: 8px;
   background-color: transparent;
   border: 2px solid #828181;
 }
@@ -157,13 +157,19 @@ body {
   box-shadow: 0px 5px 10px 1px #06070E;
 }
 
-.navContainer {
-  padding-left: 20px;
-  padding-right: 20px;
-  box-shadow: 10px 1px 1px 1px #06070E;
-  display: block;
+nav {
   background-color: #3b7066;
   border-bottom: #282828 2px solid;
+  box-shadow: 10px 1px 1px 1px rgba(6, 7, 14, 0.3);
+}
+
+.navContainer {
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 960px;
+  display: block;
+  background-color: #3b7066;
 }
 
 .navContainer ul {
@@ -174,10 +180,8 @@ body {
 
 .navContainer li {
   float: left;
-}
-
-.navContainer li:first-child {
-  border-right: 2px solid #828181;
+  margin-top: 10px;
+  font-size: 1.2em;
 }
 
 .navContainer li:last-child {
@@ -197,6 +201,7 @@ body {
 }
 
 .navLogo {
+  text-align: center;
   width: 40px;
   height: 40px;
 }

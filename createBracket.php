@@ -33,6 +33,6 @@ if (isset($_SESSION['user'])) {
     require "includes/footer.php";
   }
   else {
-    header('Location:login.php');
+    header('Location:login.php?page=1');
   }
 ?>

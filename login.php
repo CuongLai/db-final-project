@@ -1,4 +1,7 @@
-<?php require 'includes/top.php'; ?>
+<?php
+  require 'includes/top.php';
+  $page = $_GET['page'];
+?>
 
   <div class="welcomeContainer">
     <h1 class="centerText welcomeH1 textShadow">Log in to</h1>
@@ -42,7 +45,12 @@
               $_SESSION['admin'] = true;
             }
             session_write_close();
-            header('Location:index.php');
+            if ($page == 1) {
+              header('Location:createBracket.php');
+            }
+            else {
+              header('Location:index.php');
+            }
           }
         }
         echo 'Wrong username or password';

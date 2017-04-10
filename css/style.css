@@ -114,6 +114,12 @@
   padding: 10px;
 }
 
+.customH2 {
+  text-transform: uppercase;
+  color: #282828;
+  font-size: 2em;
+}
+
 body {
   background-color: #29524A;
 }
@@ -204,4 +210,41 @@ nav {
   text-align: center;
   width: 40px;
   height: 40px;
+}
+
+.viewBracketsTitleContainer {
+  display: block;
+  background-color: #b6bfbd;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #29524A;
+  margin: 10px 0px 10px;
+  padding: 5px;
+  border-bottom: 5px solid #3b7066;
+}
+
+.viewBracketsTableContainer {
+  display: block;
+  background-color: #b6bfbd;
+  border: 1px solid #29524A;
+  margin: 10px 0px 10px;
+  padding: 5px;
+  border-top: 5px solid #3b7066;
+}
+
+div.middle-80 table.viewBracketsTableContainer:last-child {
+  border-radius: 0px 0px 10px 10px;
+}
+
+.tableRow {
+  margin: auto;
+  text-align: left;
+  width: 42%;
+}
+
+th {
+  width: 25%;
+}
+
+td {
+  width: 25%;
 }

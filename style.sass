@@ -92,6 +92,10 @@
 .formGroup
   display: block
   padding: 10px
+.customH2
+  text-transform: uppercase
+  color: $gray
+  font-size: 2em
 
 //SPECIFIC SELECTORS
 body
@@ -166,3 +170,32 @@ nav
   text-align: center
   width: 40px
   height: 40px
+//View Brackets section
+
+.viewBracketsTitleContainer
+  display: block
+  background-color: $offwhite
+  border-radius: 10px 10px 0 0
+  border: 1px solid $slate
+  margin: 10px 0px 10px
+  padding: 5px
+  border-bottom: 5px solid $lightslate
+
+.viewBracketsTableContainer
+  display: block
+  background-color: $offwhite
+  border: 1px solid $slate
+  margin: 10px 0px 10px
+  padding: 5px
+  border-top: 5px solid $lightslate
+div.middle-80 table.viewBracketsTableContainer:last-child
+  border-radius: 0px 0px 10px 10px
+
+.tableRow
+  margin: auto
+  text-align: left
+  width: 42%
+th
+  width: 25%
+td
+  width: 25%

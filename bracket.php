@@ -8,6 +8,12 @@
   foreach ($results as $title) {
     print '<h1 class="welcomeH1 centerText textShadow">' . $title["fldBracketName"] . '</h1>';
   }
+
+  $numMatches = $results[0]['fldNumMatches'];
+  for ($i = 0; $i < $numMatches; $i++) {
+    print '<div class="match">';
+    print '</div>';
+  }
 ?>
 
 <?php

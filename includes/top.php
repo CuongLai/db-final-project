@@ -17,7 +17,6 @@
       <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
       <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen">
 
-
       <?php
         print '<!-- begin including libraries -->';
         include 'lib/constants.php';

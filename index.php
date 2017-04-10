@@ -6,7 +6,6 @@
   print '<img class="centerImg welcomeImg" src="./css/images/logo.png" alt="logo for our website" />';
   print '<div class="clear">';
 
-//Added this stuff. see if it appears for you
   if (!isset($_SESSION['user'])) {
     print '<div class="left-40">';
     print '<h1 class="floatLeft customH1 subH1">Ready to get your tournament going?</h1>';

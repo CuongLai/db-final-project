@@ -1,23 +1,22 @@
 <?php require 'includes/top.php'; ?>
 
-<form action="#" method="post">
   <div class="welcomeContainer">
-    <h1 class="centerText customH1">Log in to</h1>
+    <h1 class="centerText welcomeH1 textShadow">Log in to</h1>
     <img class="centerImg" alt="Brakets logo" src="css/images/logo.png">
   </div>
-
-  <div class="formGroup centerText">
-    <h2 class="customH2">Username:</h2>
+<form class = "formGroup" action="#" method="post">
+  <div class="centerText">
+    <h2 class="customH1">Username:</h2>
     <input type="text" name="username" value="cuong" />
   </div>
 
-  <div class="formGroup centerText">
-    <h2 class="customH2">Password:</h2>
+  <div class="centerText">
+    <h2 class="customH1">Password:</h2>
     <input type="password" name="password" value="admin" />
   </div>
 
-  <input class="mainBtn formGroup centerText" id="btnSubmit" name="login" type="submit" value="Log In" >
-  <a href="signup.php">Register</a>
+  <input class="mainBtn linkBtn" id="btnSubmit" name="login" type="submit" value="Log In" >
+  <a class="secondaryBtn secondaryLinkBtn" href="signup.php">Register</a>
 </form>
 
 <?php

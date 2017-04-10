@@ -42,7 +42,7 @@
   print '</div>';
   }
   else {
-    header('Location:login.php');
+    header('Location:login.php?page=2');
   }
   require 'includes/footer.php';
 ?>

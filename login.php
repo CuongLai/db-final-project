@@ -48,6 +48,9 @@
             if ($page == 1) {
               header('Location:createBracket.php');
             }
+            else if ($page == 2) {
+              header('Location:viewBrackets.php');
+            }
             else {
               header('Location:index.php');
             }

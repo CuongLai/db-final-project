@@ -28,7 +28,7 @@
       else {
         print '<td>Double</td>';
       }
-      print '<td>' . $result['fldNumMatches'] . '</td>';
+      print '<td>' . $result['fldNumPlayers'] . '</td>';
       if ($result['fldCompletion'] == 0) {
         print '<td>In-progress</td>';
       }

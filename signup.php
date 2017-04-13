@@ -1,25 +1,29 @@
 <?php
 require "includes/top.php";
 ?>
-<div class="welcomeContainer">
+<div class="middle-80">
+<div class="viewBracketsTitleContainer">
+
   <h1 class="centerText customH1">Sign up for Brakets!</h1>
-</div>
 <article>
 <form action="#" method="post">
 
 <div class="formGroup centerText">
-  <h2 class="customH2">Create your username:</h2>
+  <h2 class="loginH1">Create your username:</h2>
   <input type="text" name="username" value="" />
 </div>
 
 <div class="formGroup centerText">
-  <h2 class="customH2">Create your password:</h2>
+  <h2 class="loginH1">Create your password:</h2>
   <input type="password" name="password" value="" />
 </div>
 
-<input class="mainBtn formGroup centerText" id="btnSubmit" name="btnSubmit" tabindex="900" type="submit" value="Sign Up" >
+<div class="loginCenterButtons">
+<input class="mainBtn linkBtn" id="btnSubmit" name="btnSubmit" tabindex="900" type="submit" value="Sign Up" >
+</div>
 </form>
-
+</div>
+</div>
 </article>
 
 <?php

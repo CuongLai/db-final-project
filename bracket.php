@@ -12,8 +12,8 @@
     print '<h1 class="welcomeH1 centerText textShadow">' . $title["fldBracketName"] . '</h1>';
   }
 
-  $numMatches = $brackets[0]['fldNumMatches'];
-  for ($i = 0; $i < $numMatches; $i+=2) {
+  $numPlayers = $brackets[0]['fldNumPlayers'];
+  for ($i = 0; $i < $numPlayers; $i+=2) {
     print '<div class="match">';
     print ' <div class="container">';
     print '   <button type="button" onclick="add(' . $i . ')">' . $players[$i]['fldName'] . '</button>';

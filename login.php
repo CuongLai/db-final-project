@@ -2,25 +2,30 @@
   require 'includes/top.php';
   $page = $_GET['page'];
 ?>
+  <div class="middle-80">
+  <div class="viewBracketsTitleContainer">
+    <h1 class="centerText loginH1 textShadow">Log in</h1>
+    <div class="centerImg">
+      <img class="loginImg" alt="Brakets logo" src="css/images/logo-mini.png">
+    </div>
 
-  <div class="welcomeContainer">
-    <h1 class="centerText welcomeH1 textShadow">Log in to</h1>
-    <img class="centerImg" alt="Brakets logo" src="css/images/logo.png">
-  </div>
 <form class = "formGroup" action="#" method="post">
-  <div class="centerText">
-    <h2 class="customH1">Username:</h2>
+  <div class="loginCenter">
+    <h2 class="customP">Username:</h2>
     <input type="text" name="username" value="cuong" />
   </div>
 
-  <div class="centerText">
-    <h2 class="customH1">Password:</h2>
+  <div class="loginCenter">
+    <h2 class="customP">Password:</h2>
     <input type="password" name="password" value="admin" />
   </div>
-
-  <input class="mainBtn linkBtn" id="btnSubmit" name="login" type="submit" value="Log In" >
+  <div class="loginCenterButtons">
+  <input class="mainBtn linkBtn centerText" id="btnSubmit" name="login" type="submit" value="Log In" >
   <a class="secondaryBtn secondaryLinkBtn" href="signup.php">Register</a>
+  </div>
 </form>
+</div>
+</div>
 
 <?php
   if (isset($_POST['login'])) {

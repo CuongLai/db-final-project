@@ -3,38 +3,31 @@
   $id = $_GET['id'];
   $data[] = $id;
   $query = 'SELECT * FROM tblBrackets WHERE pmkBracketId=?';
-  $brackets = $thisDatabaseReader->select($query, $data);
+  $bracket = $thisDatabaseReader->select($query, $data);
 
-  $query = 'SELECT * FROM tblPeople WHERE fnkBracketId=?';
-  $players = $thisDatabaseReader->select($query, $data);
-
-  foreach ($brackets as $title) {
+  foreach ($bracket as $title) {
     print '<h1 class="welcomeH1 centerText textShadow">' . $title["fldBracketName"] . '</h1>';
   }
 
-  $numPlayers = $brackets[0]['fldNumPlayers'];
-  for ($i = 0; $i < $numPlayers; $i+=2) {
+  $query = 'SELECT * FROM tblBracketsPeople WHERE fnkBracketId=?';
+  $matchInfo = $thisDatabaseReader->select($query, $data);
+
+  foreach ($matchInfo as $match) {
+    $data = array();
+    $data[] = $match['fnkPlayer1Id'];
+    $query = 'SELECT * FROM tblPeople WHERE pmkPlayerId=?';
+    $player1 = $thisDatabaseReader->select($query, $data);
+    $data = array();
+    $data[] = $match['fnkPlayer2Id'];
+    $query = 'SELECT * FROM tblPeople WHERE pmkPlayerId=?';
+    $player2 = $thisDatabaseReader->select($query, $data);
+
     print '<div class="match">';
-    print ' <div class="container">';
-    print '   <button type="button" onclick="add(' . $i . ')">' . $players[$i]['fldName'] . '</button>';
-    print '   <p id="' . $i . '">0</p>';
-    print ' <div class="container">';
-    $j = $i+1;
-    print '   <button type="button" onclick="add(' . $j . ')">' . $players[$j]['fldName'] . '</button>';
-    print '   <p id="' . $j . '">0</p>';
+    print ' <p>' . $player1[0]['fldName'] . '</p>';
+    print ' <p>' . $player2[0]['fldName'] . '</p>';
+    print ' <a href="match.php?p1=' . $player1[0]['fldName'] . '&p2=' . $player2[0]['fldName'] . '">Start Match</a>';
     print '</div>';
   }
-?>
 
-<script type="text/javascript">
-var counter = 0;
-  function add(i) {
-
-    counter++;
-    document.getElementById(i).innerHTML = counter;
-  }
-</script>
-
-<?php
   require 'includes/footer.php';
 ?>

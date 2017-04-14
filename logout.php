@@ -13,4 +13,4 @@
 
 <h1>Thank you for using Brakets!</h1>
 <button class="mainBtn"><a href="index.php">Home</a></button>
-<button class="mainBtn"><a href="login.php">Log back in</a></button>
+<button class="mainBtn"><a href="login.php?page=0">Log back in</a></button>

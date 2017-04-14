@@ -21,6 +21,8 @@
     print '</div>';
   }
   else {
+    print '<h1 class="floatLeft customH1 subH1">Welcome ' . $_SESSION['username'] . '!</h1>';
+
     print '<h1 class="floatLeft customH1 subH1">Start a bracket for your tournament!</h1>';
     print '</div>';
     print '<button class="mainBtn"><a class="linkBtn" href="createBracket.php">Create</a></button>';

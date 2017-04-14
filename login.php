@@ -46,6 +46,7 @@
         foreach ($results as $result) {
           if ($result['fldPassword'] == $password) {
             $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
+            $_SESSION['username'] = $result['fldUsername'];
             if ($result['fldAdmin'] == 1) {
               $_SESSION['admin'] = true;
             }

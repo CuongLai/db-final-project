@@ -44,9 +44,12 @@ require "includes/top.php";
       }
     }
     if ($error === false) {
-      $query = 'INSERT INTO tblPending SET fldUser=?, fldPass=?';
+      $query = 'INSERT INTO tblUsers SET fldUsername=?, fldPassword=?';
       $results = $thisDatabaseWriter->insert($query, $data);
-      header('Location:confirmUser.php');
+      $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
+      $_SESSION['username'] = $data[0];
+      session_write_close();
+      header('Location:index.php');
     }
     else {
       echo 'Username already exists! Please choose another one.';

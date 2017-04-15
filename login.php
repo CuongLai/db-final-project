@@ -4,7 +4,10 @@
 ?>
   <div class="middle-80">
   <div class="viewBracketsTitleContainer">
-    <h1 class="centerText loginH1 textShadow">Log in</h1>
+    <h1 class="centerText customH2">Log in</h1>
+  </div>
+
+  <div class="viewBracketsTableContainer">
     <div class="centerImg">
       <img class="loginImg" alt="Brakets logo" src="css/images/logo-mini.png">
     </div>
@@ -24,6 +27,7 @@
   <a class="secondaryBtn secondaryLinkBtn" href="signup.php">Register</a>
   </div>
 </form>
+</div>
 </div>
 </div>
 

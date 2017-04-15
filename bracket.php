@@ -23,8 +23,8 @@
     $player2 = $thisDatabaseReader->select($query, $data);
 
     print '<div class="match">';
-    print ' <p>' . $player1[0]['fldName'] . '</p>';
-    print ' <p>' . $player2[0]['fldName'] . '</p>';
+    print ' <p class="playerContainer">' . $player1[0]['fldName'] . '</p>';
+    print ' <p class ="playerContainer">' . $player2[0]['fldName'] . '</p>';
     print ' <a href="match.php?p1=' . $player1[0]['fldName'] . '&p2=' . $player2[0]['fldName'] . '">Start Match</a>';
     print '</div>';
   }

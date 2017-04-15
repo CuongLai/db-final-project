@@ -4,10 +4,11 @@ if (isset($_SESSION['user'])) {
 ?>
 <div class="middle-80 padding-10">
 <div class="createBracketContainer">
-  <h1 class="centerText loginH1">Please create your bracket</h1>
+  <h1 class="centerText customH2">Please create your bracket</h1>
 <article>
+</div>
+<div class="viewBracketsTableContainer">
 <form action="#" method="post">
-
 <div class="formGroup centerText">
   <h2 class="loginH1">Enter your bracket name:</h2>
   <input type="text" name="bracketName" value="" />
@@ -29,6 +30,7 @@ if (isset($_SESSION['user'])) {
 </form>
 </div>
 </div>
+
 
 </article>
 

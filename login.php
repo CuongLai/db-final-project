@@ -62,7 +62,7 @@
               header('Location:viewBrackets.php');
             }
             else {
-              header('Location:index.php');
+              header('Location:viewBrackets.php');
             }
           }
         }

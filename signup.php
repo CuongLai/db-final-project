@@ -49,7 +49,7 @@ require "includes/top.php";
       $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
       $_SESSION['username'] = $data[0];
       session_write_close();
-      header('Location:index.php');
+      header('Location:signupMessage.php');
     }
     else {
       echo 'Username already exists! Please choose another one.';

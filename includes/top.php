@@ -28,7 +28,7 @@
   <?php
     print '<body id="' . $PATH_PARTS['filename'] . '">';
     $location = $PATH_PARTS['filename'];
-    if ($location != 'login' && $location != 'logout' && $location != 'signup') {
+    if ($location != 'login' && $location != 'logout' && $location != 'signup' && $location != 'signupMessage') {
       require 'nav.php';
     }
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {

@@ -24,8 +24,16 @@
 
     print '<div class="match">';
     print ' <p class="playerContainer">' . $player1[0]['fldName'] . '</p>';
+    print ' <p class="scoreContainer">' . $match['fldP1Score'] . '</p>';
     print ' <p class ="playerContainer">' . $player2[0]['fldName'] . '</p>';
-    print ' <a href="match.php?p1=' . $player1[0]['fldName'] . '&p2=' . $player2[0]['fldName'] . '">Start Match</a>';
+    print ' <p class="scoreContainer">' . $match['fldP2Score'] . '</p>';
+    print ' <a href="match.php?p1=' . $player1[0]['fldName'] . '&p2=' . $player2[0]['fldName'] . '&id=' . $match['pmkMatchId'] . '">';
+    if ($match['fldP1Score'] == 0 && $match['fldP2Score'] == 0) {
+      print 'Start match';
+    } else {
+      print 'Edit match';
+    }
+    print '</a>';
     print '</div>';
   }
 

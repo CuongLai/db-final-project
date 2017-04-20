@@ -1,12 +1,10 @@
 <?php
   require 'includes/top.php';
-  $bracketId = $_GET['bracketId'];
   $matchId = $_GET['matchId'];
   $data = array();
-  $data[] = $bracketId;
   $data[] = $matchId;
 
-  $query = 'SELECT * FROM tblBracketsPeople WHERE fnkBracketId=? AND pmkMatchId=?';
+  $query = 'SELECT * FROM tblBracketsPeople WHERE pmkMatchId=?';
   $matchInfo = $thisDatabaseReader->select($query, $data);
 
   $data = array();
@@ -48,13 +46,35 @@
   if (isset($_POST['submit'])) {
       $p1Score = htmlentities($_POST['p1Score'], ENT_QUOTES, "UTF-8");
       $p2Score = htmlentities($_POST['p2Score'], ENT_QUOTES, "UTF-8");
-      $scoreData = array();
-      $scoreData[] = $p1Score;
-      $scoreData[] = $p2Score;
-      $scoreData[] = $matchId;
+      $data = array();
+      $data[] = $p1Score;
+      $data[] = $p2Score;
+      $data[] = $matchId;
 
       $query = 'UPDATE tblBracketsPeople SET fldP1Score=?, fldP2Score=? WHERE pmkMatchId=?';
-      $results = $thisDatabaseWriter->update($query, $scoreData);
+      $results = $thisDatabaseWriter->update($query, $data);
+
+      if ($p1Score == 3 || $p2Score == 3) {
+        if ($matchInfo[0]['fldRoundId'] != 4) {
+          $data = array();
+          if ($p1Score > $p2Score) {
+            $data[] = $matchInfo[0]['fnkPlayer1Id'];
+          } else {
+            $data[] = $matchInfo[0]['fnkPlayer2Id'];
+          }
+          $data[] = $matchInfo[0]['fldRoundId'] + 1;
+          $data[] = $matchInfo[0]['fldNextMatch'];
+
+          if ($matchInfo[0]['fldWhichPlayer'] == 1) {
+            $query = 'UPDATE tblBracketsPeople SET fnkPlayer1Id=? WHERE fldRoundId=? AND fldRoundMatchId=?';
+          }
+          else {
+            $query = 'UPDATE tblBracketsPeople SET fnkPlayer2Id=? WHERE fldRoundId=? AND fldRoundMatchId=?';
+          }
+
+          $results = $thisDatabaseWriter->update($query, $data);
+        }
+      }
 
       header('Location:bracket.php?id=' . $matchInfo[0]['fnkBracketId'] . '');
   }
@@ -117,8 +137,8 @@
     stop = false;
     document.getElementById("player1").value = counter1;
     document.getElementById("player2").value = counter2;
-    document.getElementById("winner1").value = "";
-    document.getElementById("winner2").value = "";
+    document.getElementById("winner1").innerHTML = " ";
+    document.getElementById("winner2").innerHTML = " ";
   }
 </script>
 

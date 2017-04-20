@@ -9,10 +9,8 @@
     print '<h1 class="welcomeH1 centerText textShadow">' . $title["fldBracketName"] . '</h1>';
   }
 
-  $query = 'SELECT DISTINCT fldRoundId FROM tblBracketsPeople WHERE fnkBracketId=?';
-  $numRounds = $thisDatabaseReader->select($query, $data);
-
-  for ($i = 1; $i <= count($numRounds); $i++) {
+  print '<div class="bracket">';
+  for ($i = 1; $i <= $bracket[0]['fldNumRounds']; $i++) {
     $data = array();
     $data[] = $id;
     $data[] = $i;
@@ -28,14 +26,13 @@
       $data[] = $match['fnkPlayer2Id'];
       $query = 'SELECT * FROM tblPeople WHERE pmkPlayerId=?';
       $player2 = $thisDatabaseReader->select($query, $data);
-
       print '<div class="match">';
       print ' <p class="playerContainer">' . $player1[0]['fldName'] . '</p>';
       print ' <p class="scoreContainer">' . $match['fldP1Score'] . '</p>';
       print ' <p class="playerContainer">' . $player2[0]['fldName'] . '</p>';
       print ' <p class="scoreContainer">' . $match['fldP2Score'] . '</p>';
-      if ($player1[0]['pmkPlayerId'] != 0 || $player2[0]['pmkPlayerId'] != 0) {
-        print ' <a href="match.php?p1=' . $player1[0]['fldName'] . '&p2=' . $player2[0]['fldName'] . '&id=' . $match['pmkMatchId'] . '">';
+      if ($player1[0]['pmkPlayerId'] != 0 && $player2[0]['pmkPlayerId'] != 0) {
+        print ' <a href="match.php?bracketId=' . $id . '&matchId=' . $match['pmkMatchId'] . '">';
         if ($match['fldP1Score'] == 0 && $match['fldP2Score'] == 0) {
           print 'Start match';
         } else {
@@ -47,6 +44,7 @@
     }
     print '</div>';
   }
+  print '</div>';
 
   require 'includes/footer.php';
 ?>

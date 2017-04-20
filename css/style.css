@@ -291,6 +291,16 @@ td {
   border-bottom: 5px solid #3b7066;
 }
 
+.bracket {
+  display: flex;
+  justify-content: space-between;
+}
+
+.round {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .playerContainer {
   background-color: #94a187;
   border-radius: 5px;
@@ -302,7 +312,6 @@ td {
 }
 
 .match {
-  width: 20%;
-  padding: 10px;
-  padding-left: 20px;
+  width: 100%;
+  padding: 10px 10px 10px 0px;
 }

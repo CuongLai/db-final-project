@@ -2,12 +2,6 @@
 require "includes/top.php";
 if (isset($_SESSION['user'])) {
 ?>
-<div class="middle-80 padding-10">
-<div class="createBracketContainer">
-  <h1 class="centerText customH2">Please create your bracket</h1>
-<article>
-</div>
-
 <?php
 
 //Init all the variables
@@ -79,7 +73,23 @@ if ($thisDatabaseWriter->querySecurityOk($query, 0)) {
                 $primaryKey = $thisDatabaseWriter->lastInsert();
             }
  ?>
-
+<div class="middle-80 padding-10">
+<div class="createBracketContainer">
+  <h1 class="centerText customH2">Please create your bracket</h1>
+<article>
+  <?php
+  if ($errorMsg) {
+    print '<div id="errors">';
+    print '<h1>Your form has the following mistakes</h1>';
+    print "<ol>\n";
+    foreach ($errorMsg as $err) {
+        print "<li>" . $err . "</li>\n";
+    }
+    print "</ol>\n";
+    print '</div>';
+}
+?>
+</div>
 <div class="viewBracketsTableContainer">
 <form action="#" method="post">
 <div class="formGroup centerText">

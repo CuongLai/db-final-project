@@ -1,6 +1,8 @@
 <?php
   require 'includes/top.php';
   $matchId = $_GET['matchId'];
+  $final = $_GET['final'];
+  $bracketId = $_GET['bracketId'];
   $data = array();
   $data[] = $matchId;
 
@@ -55,7 +57,7 @@
       $results = $thisDatabaseWriter->update($query, $data);
 
       if ($p1Score == 3 || $p2Score == 3) {
-        if ($matchInfo[0]['fldRoundId'] != 4) {
+        if ($matchInfo[0]['fldRoundId'] != $final) {
           $data = array();
           if ($p1Score > $p2Score) {
             $data[] = $matchInfo[0]['fnkPlayer1Id'];
@@ -72,6 +74,13 @@
             $query = 'UPDATE tblBracketsPeople SET fnkPlayer2Id=? WHERE fldRoundId=? AND fldRoundMatchId=?';
           }
 
+          $results = $thisDatabaseWriter->update($query, $data);
+        }
+        else {
+          $data = array();
+          $data[] = 1;
+          $data[] = $bracketId;
+          $query = 'UPDATE tblBrackets SET fldCompletion=? WHERE pmkBracketId=?';
           $results = $thisDatabaseWriter->update($query, $data);
         }
       }

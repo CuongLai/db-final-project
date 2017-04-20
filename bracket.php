@@ -32,7 +32,7 @@
       print ' <p class="playerContainer">' . $player2[0]['fldName'] . '</p>';
       print ' <p class="scoreContainer">' . $match['fldP2Score'] . '</p>';
       if ($player1[0]['pmkPlayerId'] != 0 && $player2[0]['pmkPlayerId'] != 0) {
-        print ' <a href="match.php?matchId=' . $match['pmkMatchId'] . '">';
+        print ' <a href="match.php?matchId=' . $match['pmkMatchId'] . '&final=' . $bracket[0]['fldNumRounds'] . '&bracketId=' . $id . '">';
         if ($match['fldP1Score'] == 0 && $match['fldP2Score'] == 0) {
           print 'Start match';
         } else {

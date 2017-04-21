@@ -1,6 +1,10 @@
 <?php
   require 'includes/top.php';
-  $page = $_GET['page'];
+  if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+  } else {
+    $page = 0;
+  }
 ?>
   <div class="middle-80">
   <div class="viewBracketsTitleContainer">

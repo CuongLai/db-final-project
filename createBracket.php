@@ -30,7 +30,7 @@ if (!securityCheck($yourURL)) {
     }
 
 //SANITIZING: removing HTML and JS from inputs
-formBracketName = htmlentities($_POST["bracketName"], ENT_QUOTES, "UTF-8");
+$formBracketName = htmlentities($_POST["bracketName"], ENT_QUOTES, "UTF-8");
 $data[] = $formBracketName;
 
 $formFldElim = htmlentities($_POST["elimination"], ENT_QUOTES, "UTF-8");
@@ -64,7 +64,6 @@ if ($formFldNumMatches < 2) {
 //set up the query
 $query = 'INSERT INTO tblBrackets SET pmkBracketId = ?, fldBracketName = ?, fldElim = ?, fldNumMatches = ? ';
 $data = array($formBracketName, $formFldElim, $formFldNumMatches, $formFldCompletion);
-}
 
 //checking the Security of our query, insert if it's good
 if ($thisDatabaseWriter->querySecurityOk($query, 0)) {
@@ -73,22 +72,23 @@ if ($thisDatabaseWriter->querySecurityOk($query, 0)) {
                 $primaryKey = $thisDatabaseWriter->lastInsert();
             }
  ?>
+ <?php
+ if ($errorMsg) {
+   print '<div id="errors">';
+   print '<h1>Your form has the following mistakes</h1>';
+   print "<ol>\n";
+   foreach ($errorMsg as $err) {
+       print "<li>" . $err . "</li>\n";
+   }
+   print "</ol>\n";
+   print '</div>';
+}
+}
+?>
 <div class="middle-80 padding-10">
 <div class="createBracketContainer">
   <h1 class="centerText customH2">Please create your bracket</h1>
 <article>
-  <?php
-  if ($errorMsg) {
-    print '<div id="errors">';
-    print '<h1>Your form has the following mistakes</h1>';
-    print "<ol>\n";
-    foreach ($errorMsg as $err) {
-        print "<li>" . $err . "</li>\n";
-    }
-    print "</ol>\n";
-    print '</div>';
-}
-?>
 </div>
 <div class="viewBracketsTableContainer">
 <form action="#" method="post">
@@ -122,5 +122,5 @@ if ($thisDatabaseWriter->querySecurityOk($query, 0)) {
   }
   else {
     header('Location:login.php?page=1');
-  }
+  };
 ?>

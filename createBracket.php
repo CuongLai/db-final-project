@@ -7,13 +7,15 @@ if (isset($_SESSION['user'])) {
 //Init all the variables
 $formBracketName = "";
 $formFldElim = "";
-$formFldNumMatches = 2;
-$formFldCompletion = ""; // @REVIEW What is this?
+$formFldNumPlayers = 2;
+$formFldCompletion = "";
+$formPlayerNames = "";
 
 //init error messages
 $formBracketNameERROR = false;
 $formFldElimERROR = false;
 $formFldNumMatchesERROR = false;
+
 
 //init the data array, and the error array
 $data = array();
@@ -31,14 +33,14 @@ if (!securityCheck($yourURL)) {
 
 //SANITIZING: removing HTML and JS from inputs
 $formBracketName = htmlentities($_POST["bracketName"], ENT_QUOTES, "UTF-8");
-$data[] = $formBracketName;
+
 
 $formFldElim = htmlentities($_POST["elimination"], ENT_QUOTES, "UTF-8");
-$data[] = $formFldElim;
 
-$formFldNumMatches = htmlentities($_POST["bracketSize"], ENT_QUOTES, "UTF-8");
-$data[] = $formFldNumMatches;
 
+$formFldNumPlayers = htmlentities($_POST["bracketSize"], ENT_QUOTES, "UTF-8");
+
+$formFldNumRounds = log($formFldNumPlayers, 2);
 //validation, error messages
 if ($formBracketName == "") {
         $errorMsg[] = "Enter your bracket name!";
@@ -62,8 +64,8 @@ if ($formFldNumMatches < 2) {
     }
 
 //set up the query
-$query = 'INSERT INTO tblBrackets SET pmkBracketId = ?, fldBracketName = ?, fldElim = ?, fldNumMatches = ? ';
-$data = array($formBracketName, $formFldElim, $formFldNumMatches, $formFldCompletion);
+$query = 'INSERT INTO tblBrackets SET fldBracketName = ?, fldElim = ?, fldNumPlayers = ?, fldNumRounds = ?, fldCompletion =?';
+$data = array($formBracketName, $formFldElim, $formFldNumPlayers, $formFldNumRounds, 0);
 
 //checking the Security of our query, insert if it's good
 if ($thisDatabaseWriter->querySecurityOk($query, 0)) {
@@ -71,6 +73,28 @@ if ($thisDatabaseWriter->querySecurityOk($query, 0)) {
                 $results = $thisDatabaseWriter->insert($query, $data);
                 $primaryKey = $thisDatabaseWriter->lastInsert();
             }
+if ($fldNumPlayers == 16) {
+  $numMatches = 15;
+}
+else if ($fldNumPlayers == 8) {
+  $numMatches = 7;
+}
+else if ($fldNumPlayers == 4) {
+  $numMatches = 3;
+}
+$nextMatch = 1;
+for ($i=1; $i<=$formfldNumPlayers/2; $i++) {
+  $data = array();
+  $data[] = $primaryKey;
+  $data[] = 1;
+  $data[] = $i;
+  $data[] = $nextMatch;
+  if (($i%2) != 0) {
+    $nextMatch++;
+  }
+}
+
+
  ?>
  <?php
  if ($errorMsg) {

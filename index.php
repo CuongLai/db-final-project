@@ -15,7 +15,7 @@
     print '<img class="floatRight bracketExampleImage" src="./css/images/bracket-example.png" />';
     print '</div>';
     print '</div>';
-    print '<button class="mainBtn"><a class="linkBtn" href="signUp.php">Sign up</a></button>';
+    print '<button class="mainBtn"><a class="linkBtn" href="signup.php">Sign up</a></button>';
     print '<button class="secondaryBtn"><a class="linkBtn secondaryLinkBtn" href="#">Learn more</a></button>';
     print '</div>';
     print '</div>';

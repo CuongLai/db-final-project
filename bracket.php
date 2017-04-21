@@ -1,5 +1,6 @@
 <?php
   require 'includes/top.php';
+  if (isset($_SESSION['user'])) {
   $id = $_GET['id'];
   $data[] = $id;
   $query = 'SELECT * FROM tblBrackets WHERE pmkBracketId=?';
@@ -45,6 +46,9 @@
     print '</div>';
   }
   print '</div>';
-
+  }
+  else {
+    header("Location:login.php?page=0");
+  }
   require 'includes/footer.php';
 ?>

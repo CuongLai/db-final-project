@@ -1,5 +1,7 @@
 <?php
   require 'includes/top.php';
+  if (isset($_SESSION['user'])) {
+
   $matchId = $_GET['matchId'];
   $final = $_GET['final'];
   $bracketId = $_GET['bracketId'];
@@ -152,5 +154,8 @@
 </script>
 
 <?php
+  } else {
+    header("Location:login.php?page=0");
+  }
   require 'includes/footer.php';
 ?>

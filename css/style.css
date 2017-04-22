@@ -255,7 +255,7 @@ td {
   width: 25%;
 }
 
-input[type=text] {
+#login input[type=text] {
   background: url(images/email-light.png) no-repeat scroll 7px 13px;
   width: 50%;
   padding: 12px 20px 12px 35px;
@@ -267,14 +267,14 @@ input[type=text] {
   transition: .2s linear .1s;
 }
 
-input[type=text]:focus {
+#login input[type=text]:focus {
   outline: none;
   color: #06070E;
   border: 2px solid #29524A;
   background: url(images/email.png) no-repeat scroll 7px 13px;
 }
 
-input[type=password] {
+#login input[type=password] {
   background: url(images/password-light.png) no-repeat scroll 7px 13px;
   width: 50%;
   padding: 12px 20px 12px 35px;
@@ -286,7 +286,7 @@ input[type=password] {
   transition: .2s linear .1s;
 }
 
-input[type=password]:focus {
+#login input[type=password]:focus {
   outline: none;
   color: #06070E;
   border: 2px solid #29524A;

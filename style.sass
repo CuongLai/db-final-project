@@ -216,6 +216,7 @@ td
   color: rgba(6, 7, 14, .6)
   transition: .2s linear .1s
   &:focus
+    cursor: pointer
     outline: none
     color: $black
     border: 2px solid $slate
@@ -289,6 +290,7 @@ td
 .bracket
   display: flex
   justify-content: space-between
+  padding: 0px 20px
 
 .round
   margin-left: 10px
@@ -306,3 +308,8 @@ td
 .match
   width: 100%
   padding: 10px 10px 10px 0px
+
+.winningPlayer
+  border: thick solid $lime
+.losingPlayer
+  opacity: .35

@@ -9,14 +9,27 @@
   foreach ($bracket as $title) {
     print '<h1 class="welcomeH1 centerText textShadow">' . $title["fldBracketName"] . '</h1>';
   }
-  print '<div class="bracket">';
+
+  print '<script>';
+     print 'var roundI = 0;';
+     print 'var matchI = 0;';
+  print '</script>';
+
+  print '<div id="bracketPlayers" class="bracket">';
   for ($i = 1; $i <= $bracket[0]['fldNumRounds']; $i++) {
     $data = array();
     $data[] = $id;
     $data[] = $i;
     $query = 'SELECT * FROM tblBracketsPeople WHERE fnkBracketId=? AND fldRoundId=?';
     $matchInfo = $thisDatabaseReader->select($query, $data);
-    print '<div class="round">';
+    print '<div id="round" class="round">';
+
+    print '<script>';
+       print 'var d = document.getElementById("bracketPlayers").children[roundI];';
+       print 'roundI++;';
+       print 'var matchI = 0;';
+    print '</script>';
+
     foreach ($matchInfo as $match) {
       $data = array();
       $data[] = $match['fnkPlayer1Id'];
@@ -26,22 +39,35 @@
       $data[] = $match['fnkPlayer2Id'];
       $query = 'SELECT * FROM tblPeople WHERE pmkPlayerId=?';
       $player2 = $thisDatabaseReader->select($query, $data);
-      print '<div class="match">';
+      print '<div id ="match" class="match">';
+
+      print '<script>';
+      print "var d2 = d.getElementsByTagName('div')[matchI];";
+      print 'matchI++;';
+      print '</script>';
+
+
       print ' <p id= "player1Container" class="playerContainer">' . $player1[0]['fldName'] . '</p>';
       print ' <p class="scoreContainer">' . $match['fldP1Score'] . '</p>';
-      if ($match['fldP1Score'] == 3) {
-        print '<script>';
-        print "document.getElementById('player1Container').style.border='thick solid 0dd3ac';";
-        print '</script>';
-
-      }
       print ' <p id= "player2Container" class="playerContainer">' . $player2[0]['fldName'] . '</p>';
-      if ($match['fldP2Score'] == 3) {
+      print ' <p class="scoreContainer">' . $match['fldP2Score'] . '</p>';
+      if ($match['fldP1Score'] == 3) {
+
         print '<script>';
-        print "document.getElementById('player2Container').style.border='thick solid #0dd3ac';";
+        print "var d3 = d2.getElementsByTagName('p')[0];";
+        print 'd3.className += " winningPlayer";';
+        print "var d4 = d2.getElementsByTagName('p')[2];";;
+        print 'd4.className += " losingPlayer";';
         print '</script>';
       }
-      print ' <p class="scoreContainer">' . $match['fldP2Score'] . '</p>';
+      elseif ($match['fldP2Score'] == 3) {
+      print '<script>';
+      print "var d3 = d2.getElementsByTagName('p')[2];";
+      print 'd3.className += " winningPlayer";';
+      print "var d4 = d2.getElementsByTagName('p')[0];";
+      print 'd4.className += " losingPlayer";';
+      print '</script>';
+       }
       if ($player1[0]['pmkPlayerId'] != 0 && $player2[0]['pmkPlayerId'] != 0) {
         print ' <a href="match.php?matchId=' . $match['pmkMatchId'] . '&final=' . $bracket[0]['fldNumRounds'] . '&bracketId=' . $id . '">';
         if ($match['fldP1Score'] == 0 && $match['fldP2Score'] == 0) {

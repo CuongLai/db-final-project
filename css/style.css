@@ -268,6 +268,7 @@ td {
 }
 
 #login input[type=text]:focus {
+  cursor: pointer;
   outline: none;
   color: #06070E;
   border: 2px solid #29524A;
@@ -366,6 +367,7 @@ td {
 .bracket {
   display: flex;
   justify-content: space-between;
+  padding: 0px 20px;
 }
 
 .round {
@@ -386,4 +388,12 @@ td {
 .match {
   width: 100%;
   padding: 10px 10px 10px 0px;
+}
+
+.winningPlayer {
+  border: thick solid #0dd3ac;
+}
+
+.losingPlayer {
+  opacity: .35;
 }

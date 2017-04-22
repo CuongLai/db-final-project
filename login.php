@@ -18,17 +18,19 @@
 
 <form class = "formGroup" action="#" method="post">
   <div class="loginCenter">
-    <h2 class="customP">Username:</h2>
-    <input type="text" name="username" value="cuong" />
+    <input type="text" name="username" placeholder="username" value="" />
   </div>
 
   <div class="loginCenter">
-    <h2 class="customP">Password:</h2>
-    <input type="password" name="password" value="admin" />
+    <input type="password" name="password" placeholder="password" value="" />
   </div>
   <div class="loginCenterButtons">
-  <input class="mainBtn linkBtn centerText" id="btnSubmit" name="login" type="submit" value="Log In" >
-  <a class="secondaryBtn secondaryLinkBtn" href="signup.php">Register</a>
+  <input class="loginBtn linkBtn " id="btnSubmit" name="login" type="submit" value="Log In" >
+  <div class="middle-80">
+    <p class="loginRegister">
+      New to Brakets? <a class="loginA" href="signup.php">Register Here</a>
+    </p>
+  </div>
   </div>
 </form>
 </div>
@@ -70,10 +72,18 @@
             }
           }
         }
-        echo 'Wrong username or password';
+        print '<div class="middle-80">';
+        print '<div class="loginError">';
+        print '<h1 class="centerText customH2">Wrong username or password</h1>';
+        print '</div>';
+        print '</div>';
       }
       else {
-        echo 'Wrong username or password';
+        print '<div class="middle-80">';
+        print '<div class="loginError">';
+        print '<h1 class="centerText customH2">Wrong username or password</h1>';
+        print '</div>';
+        print '</div>';
       }
     }
   }

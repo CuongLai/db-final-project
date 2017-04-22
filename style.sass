@@ -54,11 +54,9 @@
   border-radius: 4px
   padding: 8px
   background-color: $olive
-  border: 2px solid $gray
+  border: 2px solid $olive
   &:hover
-    transform: scale(1.08)
-    color: $white
-    box-shadow: -1px 2px 7px rgba(40, 40, 40, 0.49)
+    background-color: $lime
 
 .secondaryBtn
   margin: 5px
@@ -67,8 +65,7 @@
   background-color: rgba(0, 0, 0, 0)
   border: 2px solid $lightgray
   &:hover
-    transform: scale(1.08)
-    box-shadow: -1px 2px 7px rgba(40, 40, 40, 0.49)
+    background-color: rgba(0, 0, 0, .2)
 .linkBtn
   text-decoration: none
   color: $white
@@ -81,7 +78,7 @@
     font-size: 1.2em
     text-transform: uppercase
     &:hover
-      color: $olive
+      color: $white
 
 .customH1
   font-size: 2.7em
@@ -207,7 +204,45 @@ th
   width: 25%
 td
   width: 25%
-//LOG IN
+//LOG IN ___________________________________________
+input[type=text]
+  background: url(images/email-light.png) no-repeat scroll 7px 13px
+  width: 50%
+  padding: 12px 20px 12px 35px
+  margin: 8px 0
+  box-sizing: border-box
+  border: 2px solid $lime
+  border-radius: 4px
+  color: rgba(6, 7, 14, .6)
+  transition: .2s linear .1s
+  &:focus
+    outline: none
+    color: $black
+    border: 2px solid $slate
+    background: url(images/email.png) no-repeat scroll 7px 13px
+input[type=password]
+  background: url(images/password-light.png) no-repeat scroll 7px 13px
+  width: 50%
+  padding: 12px 20px 12px 35px
+  margin: 8px 0
+  box-sizing: border-box
+  border: 2px solid $lime
+  border-radius: 4px
+  color: rgba(6, 7, 14, .6)
+  transition: .2s linear .1s
+  &:focus
+    outline: none
+    color: $black
+    border: 2px solid $slate
+    background: url(images/password.png) no-repeat scroll 7px 13px
+.loginError
+    display: block
+    background-color: $offwhite
+    border: 1px solid $slate
+    margin: 10px 0px 10px
+    padding: 5px
+    border-bottom: 5px solid $red
+    border-radius: 0px 0px 10px 10px
 .loginH1
   text-transform: uppercase
   color: $gray
@@ -226,7 +261,23 @@ td
   text-align: center
 .loginCenter
   text-align: center
-
+.loginRegister
+  color: rgba(6, 7, 14, .6)
+.loginA
+  color: rgba(6, 7, 14, .65)
+  text-decoration: none
+  font-weight: bold
+  &:hover
+    color: $gray
+.loginBtn
+  width: 50%
+  margin: 5px
+  border-radius: 4px
+  padding: 8px
+  background-color: $olive
+  border: 2px solid $olive
+  &:hover
+    background-color: $lime
 .createBracketContainer
   display: block
   background-color: $offwhite

@@ -1,8 +1,6 @@
 <?php
 require "includes/top.php";
 if (isset($_SESSION['user'])) {
-?>
-<?php
 
 //Init all the variables
 $formBracketName = "";
@@ -23,92 +21,93 @@ $errorMsg = array();
 
 //form processing
 if (isset($_POST["btnSubmit"])) {
+  //SANITIZING: removing HTML and JS from inputs
+  $formBracketName = htmlentities($_POST["bracketName"], ENT_QUOTES, "UTF-8");
+  $formFldElim = htmlentities($_POST["elimination"], ENT_QUOTES, "UTF-8");
+  $formFldNumPlayers = htmlentities($_POST["bracketSize"], ENT_QUOTES, "UTF-8");
+  $formFldNumRounds = log($formFldNumPlayers, 2);
+  $formFldCompletion = 0;
+  //validation, error messages
+  // if ($formBracketName == "") {
+  //   $errorMsg[] = "Enter your bracket name!";
+  //   $formBracketNameERROR = true;
+  // } elseif (!verifyAlphaNum($formBracketName)) {
+  //   $errorMsg[] = "Your bracket name appears to have extra characters.";
+  //   $formBracketNameERROR = true;
+  // }
+  //
+  // if ($formFldElim == "") {
+  //   $errorMsg[] = "Enter the type of bracket!";
+  //   $formFldElimERROR = true;
+  // } elseif (!verifyAlphaNum($formFldElim)) {
+  //   $errorMsg[] = "You didn't select a type of bracket!";
+  //   $formFldElimERROR = true;
+  // }
+  //
+  // if ($formFldNumMatches < 2) {
+  //   $errorMsg[] = "You need atleast 2 players!";
+  //   $formFldNumMatches = true;
+  // }
+  //
+  //set up the query
+  $query = 'INSERT INTO tblBrackets SET fldBracketName=?, fldElim=?, fldNumPlayers=?, fldNumRounds=?, fldCompletion=?';
+  $data = array($formBracketName, $formFldElim, $formFldNumPlayers, $formFldNumRounds, $formFldCompletion);
 
-//security check, does this actually work? @REVIEW
-if (!securityCheck($yourURL)) {
-        $msg = "<p>Sorry you cannot access this page. ";
-        $msg.= "Security breach detected and reported</p>";
-        die($msg);
+  $query = $thisDatabaseWriter->sanitizeQuery($query);
+  $results = $thisDatabaseWriter->insert($query, $data);
+  $primaryKey = $thisDatabaseWriter->lastInsert();
+
+  $playerArray = array(3, 14, 16, 7); //array of player id's made for testing only
+
+  $numMatches = $formFldNumPlayers;
+  $playerIndex = 0; //number that will reference the playerArray
+  for ($i=1; $i<=$formFldNumRounds; $i++) {
+    $nextMatchCount = 1;
+    $numMatches = $numMatches / 2;
+    for ($j=1; $j<=$numMatches; $j++) {
+      $data = array();
+      $data[] = $primaryKey; //fnkBracketId
+      $data[] = $i; //fldRoundId
+      $data[] = $j; //fldRoundMatchId
+      if ($j % 2 != 0) { //if odd
+        $data[] = $nextMatchCount; //fldNextMatch
+        $data[] = 1; //fldWhichPlayer
+      }
+      else { //if even
+        $data[] = $nextMatchCount; //fldNextMatch
+        $nextMatchCount++;
+        $data[] = 2; //fldWhichPlayer
+      }
+      if ($i == 1) {
+        $data[] = $playerArray[$playerIndex]; //fnkPlayer1Id
+        $playerIndex++;
+        $data[] = $playerArray[$playerIndex]; //fnkPlayer2Id
+        $playerIndex++;
+      }
+      else {
+        $data[] = 0; //fnkPlayer1Id
+        $data[] = 0; //fnkPlayer2Id
+      }
+      $data[] = 0; //fldP1Score
+      $data[] = 0; //fldP2Score
+      $query = 'INSERT INTO tblBracketsPeople SET fnkBracketId=?, fldRoundId=?, fldRoundMatchId=?, fldNextMatch=?, fldWhichPlayer=?, fnkPlayer1Id=?, fnkPlayer2Id=?, fldP1Score=?, fldP2Score=?';
+      $results = $thisDatabaseWriter->insert($query, $data);
     }
+  }
 
-//SANITIZING: removing HTML and JS from inputs
-$formBracketName = htmlentities($_POST["bracketName"], ENT_QUOTES, "UTF-8");
-
-
-$formFldElim = htmlentities($_POST["elimination"], ENT_QUOTES, "UTF-8");
-
-
-$formFldNumPlayers = htmlentities($_POST["bracketSize"], ENT_QUOTES, "UTF-8");
-
-$formFldNumRounds = log($formFldNumPlayers, 2);
-//validation, error messages
-if ($formBracketName == "") {
-        $errorMsg[] = "Enter your bracket name!";
-        $formBracketNameERROR = true;
-    } elseif (!verifyAlphaNum($formBracketName)) {
-        $errorMsg[] = "Your bracket name appears to have extra characters.";
-        $formBracketNameERROR = true;
-}
-
-if ($formFldElim == "") {
-        $errorMsg[] = "Enter the type of bracket!";
-        $formFldElimERROR = true;
-    } elseif (!verifyAlphaNum($formFldElim)) {
-        $errorMsg[] = "You didn't select a type of bracket!";
-        $formFldElimERROR = true;
-}
-
-if ($formFldNumMatches < 2) {
-        $errorMsg[] = "You need atleast 2 players!";
-        $formFldNumMatches = true;
+  if ($errorMsg) {
+    print '<div id="errors">';
+    print '<h1>Your form has the following mistakes</h1>';
+    print "<ol>\n";
+    foreach ($errorMsg as $err) {
+      print "<li>" . $err . "</li>\n";
     }
-
-//set up the query
-$query = 'INSERT INTO tblBrackets SET fldBracketName = ?, fldElim = ?, fldNumPlayers = ?, fldNumRounds = ?, fldCompletion =?';
-$data = array($formBracketName, $formFldElim, $formFldNumPlayers, $formFldNumRounds, 0);
-
-//checking the Security of our query, insert if it's good
-if ($thisDatabaseWriter->querySecurityOk($query, 0)) {
-                $query = $thisDatabaseWriter->sanitizeQuery($query);
-                $results = $thisDatabaseWriter->insert($query, $data);
-                $primaryKey = $thisDatabaseWriter->lastInsert();
-            }
-if ($fldNumPlayers == 16) {
-  $numMatches = 15;
-}
-else if ($fldNumPlayers == 8) {
-  $numMatches = 7;
-}
-else if ($fldNumPlayers == 4) {
-  $numMatches = 3;
-}
-$nextMatch = 1;
-for ($i=1; $i<=$formfldNumPlayers/2; $i++) {
-  $data = array();
-  $data[] = $primaryKey;
-  $data[] = 1;
-  $data[] = $i;
-  $data[] = $nextMatch;
-  if (($i%2) != 0) {
-    $nextMatch++;
+    print "</ol>\n";
+    print '</div>';
   }
 }
-
-
- ?>
- <?php
- if ($errorMsg) {
-   print '<div id="errors">';
-   print '<h1>Your form has the following mistakes</h1>';
-   print "<ol>\n";
-   foreach ($errorMsg as $err) {
-       print "<li>" . $err . "</li>\n";
-   }
-   print "</ol>\n";
-   print '</div>';
-}
-}
 ?>
+
 <div class="middle-80 padding-10">
 <div class="createBracketContainer">
   <h1 class="centerText customH2">Please create your bracket</h1>
@@ -137,8 +136,6 @@ for ($i=1; $i<=$formfldNumPlayers/2; $i++) {
 </form>
 </div>
 </div>
-
-
 </article>
 
 <?php

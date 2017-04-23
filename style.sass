@@ -55,6 +55,7 @@
   padding: 8px
   background-color: $olive
   border: 2px solid $olive
+  transition: .2s linear .1s
   &:hover
     background-color: $lime
 
@@ -304,12 +305,57 @@ td
   padding: 10px 10px 10px 20px
   font-weight: bold
   font-size: 1.3em
+  border: 5px solid $lightkhaki
 
 .match
   width: 100%
   padding: 10px 10px 10px 0px
 
 .winningPlayer
-  border: thick solid $lime
+  border: 5px solid $lime
+
 .losingPlayer
   opacity: .35
+
+.matchBtn
+  margin: 5px
+  border-radius: 4px
+  padding: 0px 20px
+  background-color: $slate
+  color: $white
+  border: 1px solid $lime
+  transition: .1s linear
+  &:hover
+    background-color: $lime
+    color: $slate
+.thisMatch
+  text-align: center
+.thisContainer
+  display: inline-block
+  width: 65%
+.matchInput
+  width: 10%
+  text-align: center
+  margin: 8px 0
+  color: $white
+  box-sizing: border-box
+  border: 2px solid $lime
+  border-radius: 4px
+  color: rgba(6, 7, 14, .6)
+  transition: .2s linear .1s
+  &:focus
+    outline: none
+.thisPlayer
+  width:
+  color: $gray
+  background-color: $white
+  font-size: 2em
+  text-transform: uppercase
+  border-top: 1px solid $lime
+  border-bottom: 1px solid $lime
+  border-right: 1px solid $lime
+  border-left: 8px solid $slate
+.matchLnkBtn
+  text-decoration: none
+  color: $white
+  font-size: 1.2em

@@ -21,30 +21,36 @@
   $query = 'SELECT * FROM tblPeople WHERE pmkPlayerId=?';
   $player2 = $thisDatabaseReader->select($query, $data);
 
-  print '<h1 class="welcomeH1 centerText textShadow">Bo5 Match</h1>';
+  print '<div class="middle-80">';
+  print '<div class="viewBracketsTitleContainer">';
+  print '<h1 class = "centerText customH2">BO5 Match</h1>';
+  print '</div>';
 
+  print '<div class="viewBracketsTableContainer">';
   print '<form action="#" method="post">';
-  print '<div class="thisMatch">';
+  print '<div class="thisMatch clear">';
   print ' <div class="thisContainer">';
   print '   <p id="winner1"></p>';
-  print '   <p>' . $player1[0]['fldName'] . '</p>';
-  print '   <button type="button" onclick="subtract(1)">-</button>';
-  print '   <input type="text" id="player1" value=' . $matchInfo[0]['fldP1Score'] . ' name="p1Score" readonly />';
-  print '   <button type="button" onclick="add(1)">+</button>';
+  print '   <p class="thisPlayer">' . $player1[0]['fldName'];
+  print '   <input type="text" class ="matchInput" id="player1" value=' . $matchInfo[0]['fldP1Score'] . ' name="p1Score" readonly />';
+  print '</p>';
+  print '   <button class="matchBtn" type="button" onclick="subtract(1)">-</button>';
+  print '   <button class="matchBtn" type="button" onclick="add(1)">+</button>';
   print ' </div>';
   print ' <div class="thisContainer">';
   print '   <p id="winner2"></p>';
-  print '   <p>' . $player2[0]['fldName'] . '</p>';
-  print '   <button type="button" onclick="subtract(2)">-</button>';
-  print '   <input type="text" id="player2" value=' . $matchInfo[0]['fldP2Score'] . ' name="p2Score" readonly />';
-  print '   <button type="button" onclick="add(2)">+</button>';
+  print '   <p class="thisPlayer">' . $player2[0]['fldName'];
+  print '   <input type="text" class="matchInput" id="player2" value=' . $matchInfo[0]['fldP2Score'] . ' name="p2Score" readonly />';
+  print '</p>';
+  print '   <button class="matchBtn" type="button" onclick="subtract(2)">-</button>';
+  print '   <button class="matchBtn" type="button" onclick="add(2)">+</button>';
   print ' </div>';
   print '</div>';
-
-  print '<button class="mainBtn" type="button"><a href="bracket.php?id=' . $matchInfo[0]['fnkBracketId'] . '">Cancel</a></button>';
-  print '<button class="mainBtn" type="button" onclick="resetScore()">Reset</button>';
-  print '<button class="mainBtn" type="submit" name="submit">Save Results</button>';
-
+  print '<div class="loginCenterButtons">';
+  print '<button class="matchBtn" type="button"><a class="matchLnkBtn" href="bracket.php?id=' . $matchInfo[0]['fnkBracketId'] . '">Cancel</a></button>';
+  print '<button class="matchBtn matchLnkBtn" type="button" onclick="resetScore()">Reset</button>';
+  print '<button class="matchBtn matchLnkBtn" type="submit" name="submit">Save Results</button>';
+  print '</div>';
   print '</form>';
 
   if (isset($_POST['submit'])) {
@@ -89,7 +95,8 @@
 
       header('Location:bracket.php?id=' . $matchInfo[0]['fnkBracketId'] . '');
   }
-
+print '</div>';
+print '</div>';
 ?>
 
 <script type="text/javascript">

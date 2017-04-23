@@ -7,7 +7,9 @@
   $bracket = $thisDatabaseReader->select($query, $data);
 
   foreach ($bracket as $title) {
-    print '<h1 class="welcomeH1 centerText textShadow">' . $title["fldBracketName"] . '</h1>';
+    print '<div class="welcomeContainer">';
+    print '<h1 class="welcomeH1 centerText">' . $title["fldBracketName"] . '</h1>';
+    print '</div>';
   }
 
   print '<script>';

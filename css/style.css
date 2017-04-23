@@ -61,6 +61,7 @@
   padding: 8px;
   background-color: #94A187;
   border: 2px solid #94A187;
+  transition: .2s linear .1s;
 }
 
 .mainBtn:hover {
@@ -383,6 +384,7 @@ td {
   padding: 10px 10px 10px 20px;
   font-weight: bold;
   font-size: 1.3em;
+  border: 5px solid #94a187;
 }
 
 .match {
@@ -391,9 +393,66 @@ td {
 }
 
 .winningPlayer {
-  border: thick solid #0dd3ac;
+  border: 5px solid #0dd3ac;
 }
 
 .losingPlayer {
   opacity: .35;
+}
+
+.matchBtn {
+  margin: 5px;
+  border-radius: 4px;
+  padding: 0px 20px;
+  background-color: #29524A;
+  color: #FFEEED;
+  border: 1px solid #0dd3ac;
+  transition: .1s linear;
+}
+
+.matchBtn:hover {
+  background-color: #0dd3ac;
+  color: #29524A;
+}
+
+.thisMatch {
+  text-align: center;
+}
+
+.thisContainer {
+  display: inline-block;
+  width: 65%;
+}
+
+.matchInput {
+  width: 10%;
+  text-align: center;
+  margin: 8px 0;
+  color: #FFEEED;
+  box-sizing: border-box;
+  border: 2px solid #0dd3ac;
+  border-radius: 4px;
+  color: rgba(6, 7, 14, 0.6);
+  transition: .2s linear .1s;
+}
+
+.matchInput:focus {
+  outline: none;
+}
+
+.thisPlayer {
+  color: #282828;
+  background-color: #FFEEED;
+  font-size: 2em;
+  text-transform: uppercase;
+  border-top: 1px solid #0dd3ac;
+  border-bottom: 1px solid #0dd3ac;
+  border-right: 1px solid #0dd3ac;
+  border-left: 8px solid #29524A;
+}
+
+.matchLnkBtn {
+  text-decoration: none;
+  color: #FFEEED;
+  font-size: 1.2em;
 }

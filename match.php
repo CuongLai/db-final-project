@@ -26,6 +26,11 @@
   print '<h1 class = "centerText customH2">BO5 Match</h1>';
   print '</div>';
 
+  print '<script>';
+     print 'var counter1 = ' . $matchInfo[0]['fldP1Score'] . ';';
+     print 'var counter2 = ' . $matchInfo[0]['fldP2Score'] . ';';
+  print '</script>';
+
   print '<div class="viewBracketsTableContainer">';
   print '<form action="#" method="post">';
   print '<div class="thisMatch clear">';
@@ -100,63 +105,55 @@ print '</div>';
 ?>
 
 <script type="text/javascript">
-  var counter1 = 0;
-  var counter2 = 0;
-  var stop = false;
   function add(i) {
-    if (stop == false) {
-      console.log("not stopped");
+    if (counter1 < 3 && counter2 < 3) {
+      if (i == 1) {
+        if (counter1 < 3) {
+          counter1++;
+          document.getElementById("player1").value = counter1;
+        }
+      }
+      else {
+        counter2++;
+        document.getElementById("player2").value = counter2;
+      }
+    }
+    else if (counter1 == 3) {
+      if (i == 2) {
+        if (counter2 < 2) {
+          counter2++
+          document.getElementById("player2").value = counter2;
+        }
+      }
+    }
+    else if (counter2 == 3) {
       if (i == 1) {
         if (counter1 < 2) {
           counter1++;
           document.getElementById("player1").value = counter1;
         }
-        else if (counter1 == 2) {
-          counter1++;
-          document.getElementById("player1").value = counter1;
-          document.getElementById("winner1").innerHTML = "Winner ->";
-          stop = true;
-        }
-      }
-      else {
-        if (counter2 < 2) {
-          counter2++;
-          document.getElementById("player2").value = counter2;
-        }
-        else if (counter2 == 2) {
-          counter2++;
-          document.getElementById("player2").value = counter2;
-          document.getElementById("winner2").innerHTML = "Winner ->";
-          stop = true;
-        }
       }
     }
   }
   function subtract(i) {
-    if (stop == false) {
-      console.log("not stopped");
-      if (i == 1) {
-        if (counter1 > 0) {
-          counter1--;
-          document.getElementById("player1").value = counter1;
-        }
+    if (i == 1) {
+      if (counter1 > 0) {
+        counter1--;
+        document.getElementById("player1").value = counter1;
       }
-      else {
-        if (counter2 > 0) {
-          counter2--;
-          document.getElementById("player2").value = counter2;
-        }
+    }
+    else {
+      if (counter2 > 0) {
+        counter2--;
+        document.getElementById("player2").value = counter2;
       }
     }
   }
   function resetScore() {
     counter1 = 0;
     counter2 = 0;
-    stop = false;
     document.getElementById("player1").value = counter1;
     document.getElementById("player2").value = counter2;
-    document.getElementById("winner1").innerHTML = " ";
-    document.getElementById("winner2").innerHTML = " ";
   }
 </script>
 

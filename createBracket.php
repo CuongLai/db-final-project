@@ -49,6 +49,7 @@ if (isset($_POST["btnSubmit"])) {
   //   $formFldNumMatches = true;
   // }
   //
+
   //set up the query
   $query = 'INSERT INTO tblBrackets SET fldBracketName=?, fldElim=?, fldNumPlayers=?, fldNumRounds=?, fldCompletion=?';
   $data = array($formBracketName, $formFldElim, $formFldNumPlayers, $formFldNumRounds, $formFldCompletion);
@@ -57,7 +58,26 @@ if (isset($_POST["btnSubmit"])) {
   $results = $thisDatabaseWriter->insert($query, $data);
   $primaryKey = $thisDatabaseWriter->lastInsert();
 
-  $playerArray = array(3, 14, 16, 7); //array of player id's made for testing only
+  $players = $_POST['player'];
+  $playerArray = array();
+  $query = 'SELECT * FROM tblPeople';
+  $results = $thisDatabaseReader->select($query, '');
+  foreach ($players as $player) {
+    $matchFound = false;
+    foreach ($results as $result) {
+      if ($player == $result['fldName']) {
+        $playerArray[] = $result['pmkPlayerId'];
+        $matchFound = true;
+      }
+    }
+    if ($matchFound == false) {
+      $data = array();
+      $data[] = $player;
+      $query = 'INSERT INTO tblPeople SET fldName=?';
+      $addedPlayer = $thisDatabaseWriter->insert($query, $data);
+      $playerArray[] = $thisDatabaseWriter->lastInsert();
+    }
+  }
 
   $numMatches = $formFldNumPlayers;
   $playerIndex = 0; //number that will reference the playerArray
@@ -128,9 +148,18 @@ if (isset($_POST["btnSubmit"])) {
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Enter number of entrants:</h2>
-  <input type="number" name="bracketSize" value="2" />
+  <select class="numNames" name="bracketSize">
+    <option></option>
+    <option value="4">4</option>
+    <option value="8">8</option>
+    <option value="16">16</option>
+  </select>
 </div>
 <div class="loginCenterButtons">
+
+<h2 class="loginH1">Enter entrant names:</h2>
+<div id="nameText" class="formGroup centerText"></div>
+
 <input class="mainBtn linkBtn" id="btnSubmit" name="btnSubmit" tabindex="900" type="submit" value="Create Bracket" />
 </div>
 </form>
@@ -138,10 +167,29 @@ if (isset($_POST["btnSubmit"])) {
 </div>
 </article>
 
+<script>
+  var nameInput =
+  '<div>' +
+    '<input type="text" class="name" name="player[]" placeholder="Add new player">' +
+  '</div>';
+
+  $('.numNames').on('input', function(e) {
+    var numPlayers = Number($(this).val());
+    createInput(numPlayers);
+  });
+
+  function createInput(numPlayers) {
+    $('#nameText').empty();
+    for (var i=0; i<numPlayers; i++) {
+      $('#nameText').append(nameInput);
+    }
+  }
+</script>
+
 <?php
     require "includes/footer.php";
   }
   else {
     header('Location:login.php?page=1');
-  };
+  }
 ?>

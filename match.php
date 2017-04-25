@@ -79,12 +79,13 @@
           }
           $data[] = $matchInfo[0]['fldRoundId'] + 1;
           $data[] = $matchInfo[0]['fldNextMatch'];
+          $data[] = $bracketId;
 
           if ($matchInfo[0]['fldWhichPlayer'] == 1) {
-            $query = 'UPDATE tblBracketsPeople SET fnkPlayer1Id=? WHERE fldRoundId=? AND fldRoundMatchId=?';
+            $query = 'UPDATE tblBracketsPeople SET fnkPlayer1Id=? WHERE fldRoundId=? AND fldRoundMatchId=? AND fnkBracketId=?';
           }
           else {
-            $query = 'UPDATE tblBracketsPeople SET fnkPlayer2Id=? WHERE fldRoundId=? AND fldRoundMatchId=?';
+            $query = 'UPDATE tblBracketsPeople SET fnkPlayer2Id=? WHERE fldRoundId=? AND fldRoundMatchId=? AND fnkBracketId=?';
           }
 
           $results = $thisDatabaseWriter->update($query, $data);

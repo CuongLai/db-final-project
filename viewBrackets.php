@@ -39,6 +39,10 @@
       print '</tr>';
     }
   }
+  else {
+    print "<h1 class='loginH1'>You don't have any Brakets...</h1>";
+    print '<button class="mainBtn"><a href="createBracket.php">Start your first bracket</a></button>';
+  }
   print '</table>';
   print '</div>';
   }

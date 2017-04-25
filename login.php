@@ -47,6 +47,7 @@
     $password = htmlentities($_POST["password"], ENT_QUOTES, "UTF-8");
 
     $errors = array();
+    $notConfirmed = false;
 
     if(!$_SESSION['user']) {
       $query = 'SELECT * FROM tblUsers WHERE fldUsername=?';
@@ -55,20 +56,28 @@
       if (!empty($results)) {
         foreach ($results as $result) {
           if ($result['fldPassword'] == $password) {
-            $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
-            $_SESSION['username'] = $result['fldUsername'];
-            if ($result['fldAdmin'] == 1) {
-              $_SESSION['admin'] = true;
-            }
-            session_write_close();
-            if ($page == 1) {
-              header('Location:createBracket.php');
-            }
-            else if ($page == 2) {
-              header('Location:viewBrackets.php');
+            if ($result['fldConfirmed'] == 1) {
+              $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
+              $_SESSION['username'] = $result['fldUsername'];
+              if ($result['fldAdmin'] == 1) {
+                $_SESSION['admin'] = true;
+              }
+              session_write_close();
+              if ($page == 1) {
+                header('Location:createBracket.php');
+              } else if ($page == 2) {
+                header('Location:viewBrackets.php');
+              } else {
+                header('Location:viewBrackets.php');
+              }
             }
             else {
-              header('Location:viewBrackets.php');
+              $notConfirmed = true;
+              print '<div class="middle-80">';
+              print ' <div class="loginError">';
+              print '   <h1 class="centerText customH2">You have not confirmed your account yet!</h1>';
+              print ' </div>';
+              print '</div>';
             }
           }
         }
@@ -79,11 +88,13 @@
         print '</div>';
       }
       else {
-        print '<div class="middle-80">';
-        print '<div class="loginError">';
-        print '<h1 class="centerText customH2">Wrong username or password</h1>';
-        print '</div>';
-        print '</div>';
+        if ($notConfirmed == false) {
+          print '<div class="middle-80">';
+          print '<div class="loginError">';
+          print '<h1 class="centerText customH2">Wrong username or password</h1>';
+          print '</div>';
+          print '</div>';
+        }
       }
     }
   }

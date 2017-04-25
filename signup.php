@@ -10,7 +10,7 @@ require "includes/top.php";
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Create your username:</h2>
-  <input type="text" name="username" value="" />
+  <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>" />
 </div>
 
 <div class="formGroup centerText">
@@ -20,7 +20,7 @@ require "includes/top.php";
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Enter your email:</h2>
-  <input type="text" name="email" value="" />
+  <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>" />
 </div>
 
 <div class="formGroup centerText">
@@ -60,50 +60,53 @@ require "includes/top.php";
 <?php
   if (isset($_POST['btnSubmit'])) {
     $data = array();
-    $error = array();
+    $errors = array();
 
-    if (!isset($_POST['username'])) {
-      $username = htmlentities($_POST['username'], ENT_QUOTES, "UTF-8");
+    $username = htmlentities($_POST['username'], ENT_QUOTES, "UTF-8");
+    if (empty($username)) {
+      $errors[] = 2;
+    } else {
       $data[] = $username;
-    } else {
-      $error[] = 2;
     }
-    if (!isset($_POST['password'])) {
-      $password = htmlentities($_POST['password'], ENT_QUOTES, "UTF-8");
+
+    $password = htmlentities($_POST['password'], ENT_QUOTES, "UTF-8");
+    if (empty($password)) {
+      $errors[] = 3;
+    } else {
       $data[] = $password;
-    } else {
-      $error[] = 3;
     }
-    if (!isset($_POST['email'])) {
-      $email = htmlentities($_POST['email'], ENT_QUOTES, "UTF-8");
+
+    $email = htmlentities($_POST['email'], ENT_QUOTES, "UTF-8");
+    if (empty($email)) {
+      $errors[] = 4;
+    } else {
       $data[] = $email;
-    } else {
-      $error[] = 4;
     }
+
     $gender = htmlentities($_POST['gender'], ENT_QUOTES, "UTF-8");
     $data[] = $gender;
-    if (!isset($_POST['userType'])) {
+
+    if (isset($_POST['userType'])) {
       $userType = htmlentities($_POST['userType'], ENT_QUOTES, "UTF-8");
       $data[] = $userType;
     } else {
-      $error[] = 6;
+      $errors[] = 6;
     }
-    if (!isset($_POST['game'])) {
+    if (isset($_POST['game'])) {
       $games = $_POST['game'];
     } else {
-      $error[] = 5;
+      $errors[] = 5;
     }
 
     $query = 'SELECT * FROM tblUsers';
     $results = $thisDatabaseReader->select($query, '');
     foreach ($results as $result) {
       if ($result['fldUsername'] == $username) {
-        $error[] = 1;
+        $errors[] = 1;
       }
     }
     $data[] = 0;
-    if (empty($error)) {
-      print_r($data);
+    if (empty($errors)) {
       $query = 'INSERT INTO tblUsers SET fldUsername=?, fldPassword=?, fldEmail=?, fldGender=?, fldUserType=?, fldConfirmed=?';
       $results = $thisDatabaseWriter->insert($query, $data);
       $userId = $thisDatabaseWriter->lastInsert();
@@ -114,28 +117,49 @@ require "includes/top.php";
         $query = 'INSERT INTO tblUsersGames SET fnkUserId=?, fnkGameId=?';
         $results = $thisDatabaseWriter->insert($query, $gameData);
       }
+
+      //email the user to confirm
+      $to = $email;
       $subject = 'Welcome to Brakets!';
-      $message = 'Thanks for signing up for Brakets! Click on the link below to get started with your first bracket! https://chlai.w3.uvm.edu/cs148/dev/final/login.php';
-      mail($email, $subject, $message);
+      $message = '
+      <html>
+      <head>
+        <title>Thanks for signing up for Brakets!</title>
+      </head>
+      <body>
+        <p>Thanks for signing up for Brakets, ' . $username . '!</p>
+        <p>Your account will be created after you click the link below.</p>
+        <p>Confirmation link: https://chlai.w3.uvm.edu/cs148/dev/final/confirmUser.php?id=' . $userId . '</p>
+      </body>
+      </html>
+      ';
+      $headers[] = 'MIME-Version: 1.0';
+      $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+      $headers[] = 'From: Brakets Team <braketsofficial@gmail.com>';
+      mail($to, $subject, $message, implode("\r\n", $headers));
 
       header('Location:signupMessage.php');
     }
     else {
       $errorMsgs = array();
-      foreach ($error as $error) {
-        switch ($error) {
-          case 1:
-            $errorMsgs[] = "Username already exists! Please choose another one.";
-          case 2:
-            $errorMsgs[] = "Please enter a username!";
-          case 3:
-            $errorMsgs[] = "Please enter a password!";
-          case 4:
-            $errorMsgs[] = "Please enter your email!";
-          case 5:
-            $errorMsgs[] = "Please choose at least one game!";
-          case 6:
-            $errorMsgs[] = "Please choose what type of user you are!";
+      foreach ($errors as $error) {
+        if ($error == 1) {
+          $errorMsgs[] = "Username already exists! Please choose another one.";
+        }
+        else if ($error == 2) {
+          $errorMsgs[] = "Please enter a username!";
+        }
+        else if ($error == 3) {
+          $errorMsgs[] = "Please enter a password!";
+        }
+        else if ($error == 4) {
+          $errorMsgs[] = "Please enter your email!";
+        }
+        else if ($error == 5) {
+          $errorMsgs[] = "Please choose at least one game!";
+        }
+        else if ($error == 6) {
+          $errorMsgs[] = "Please choose what type of user you are!";
         }
       }
       foreach ($errorMsgs as $errorMsg) {

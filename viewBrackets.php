@@ -1,8 +1,9 @@
 <?php
   require 'includes/top.php';
   if (isset($_SESSION['user'])) {
-    $query = 'SELECT * FROM tblBrackets';
-    $results = $thisDatabaseReader->select($query, '');
+    $data[] = $_SESSION['userId'];
+    $query = 'SELECT * FROM tblBrackets WHERE fnkUserId=?';
+    $results = $thisDatabaseReader->select($query, $data);
 ?>
 <div class="middle-80">
 

@@ -59,9 +59,7 @@
             if ($result['fldConfirmed'] == 1) {
               $_SESSION['user'] = isset($_SESSION['user']) ? $_SESSION['user'] : '';
               $_SESSION['username'] = $result['fldUsername'];
-              if ($result['fldAdmin'] == 1) {
-                $_SESSION['admin'] = true;
-              }
+              $_SESSION['userId'] = $result['pmkUserId'];
               session_write_close();
               if ($page == 1) {
                 header('Location:createBracket.php');

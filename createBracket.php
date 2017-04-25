@@ -51,8 +51,9 @@ if (isset($_POST["btnSubmit"])) {
   //
 
   //set up the query
-  $query = 'INSERT INTO tblBrackets SET fldBracketName=?, fldElim=?, fldNumPlayers=?, fldNumRounds=?, fldCompletion=?';
-  $data = array($formBracketName, $formFldElim, $formFldNumPlayers, $formFldNumRounds, $formFldCompletion);
+  $query = 'INSERT INTO tblBrackets SET fnkUserId=?, fldBracketName=?, fldElim=?, fldNumPlayers=?, fldNumRounds=?, fldCompletion=?';
+  $id = $_SESSION['userId'];
+  $data = array($id, $formBracketName, $formFldElim, $formFldNumPlayers, $formFldNumRounds, $formFldCompletion);
 
   $query = $thisDatabaseWriter->sanitizeQuery($query);
   $results = $thisDatabaseWriter->insert($query, $data);

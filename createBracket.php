@@ -27,6 +27,10 @@ if (isset($_POST["btnSubmit"])) {
   $formFldNumPlayers = htmlentities($_POST["bracketSize"], ENT_QUOTES, "UTF-8");
   $formFldNumRounds = log($formFldNumPlayers, 2);
   $formFldCompletion = 0;
+
+  if ($formFldElim == 1) {
+    $formFldNumRounds++;
+  }
   //validation, error messages
   // if ($formBracketName == "") {
   //   $errorMsg[] = "Enter your bracket name!";
@@ -84,7 +88,13 @@ if (isset($_POST["btnSubmit"])) {
   $playerIndex = 0; //number that will reference the playerArray
   for ($i=1; $i<=$formFldNumRounds; $i++) {
     $nextMatchCount = 1;
-    $numMatches = $numMatches / 2;
+    if ($formFldElim == 1) {
+      if ($i != $formFldNumRounds) {
+        $numMatches = $numMatches / 2;
+      }
+    } else {
+      $numMatches = $numMatches / 2;
+    }
     for ($j=1; $j<=$numMatches; $j++) {
       $data = array();
       $data[] = $primaryKey; //fnkBracketId

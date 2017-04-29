@@ -4,16 +4,13 @@ if (isset($_SESSION['user'])) {
 
 //Init all the variables
 $formBracketName = "";
-$formFldElim = "";
 $formFldNumPlayers = 2;
 $formFldCompletion = "";
 $formPlayerNames = "";
 
 //init error messages
 $formBracketNameERROR = false;
-$formFldElimERROR = false;
 $formFldNumMatchesERROR = false;
-
 
 //init the data array, and the error array
 $data = array();
@@ -23,14 +20,9 @@ $errorMsg = array();
 if (isset($_POST["btnSubmit"])) {
   //SANITIZING: removing HTML and JS from inputs
   $formBracketName = htmlentities($_POST["bracketName"], ENT_QUOTES, "UTF-8");
-  $formFldElim = htmlentities($_POST["elimination"], ENT_QUOTES, "UTF-8");
   $formFldNumPlayers = htmlentities($_POST["bracketSize"], ENT_QUOTES, "UTF-8");
   $formFldNumRounds = log($formFldNumPlayers, 2);
   $formFldCompletion = 0;
-
-  if ($formFldElim == 1) {
-    $formFldNumRounds++;
-  }
   //validation, error messages
   // if ($formBracketName == "") {
   //   $errorMsg[] = "Enter your bracket name!";
@@ -55,9 +47,9 @@ if (isset($_POST["btnSubmit"])) {
   //
 
   //set up the query
-  $query = 'INSERT INTO tblBrackets SET fnkUserId=?, fldBracketName=?, fldElim=?, fldNumPlayers=?, fldNumRounds=?, fldCompletion=?';
+  $query = 'INSERT INTO tblBrackets SET fnkUserId=?, fldBracketName=?, fldNumPlayers=?, fldNumRounds=?, fldCompletion=?';
   $id = $_SESSION['userId'];
-  $data = array($id, $formBracketName, $formFldElim, $formFldNumPlayers, $formFldNumRounds, $formFldCompletion);
+  $data = array($id, $formBracketName, $formFldNumPlayers, $formFldNumRounds, $formFldCompletion);
 
   $query = $thisDatabaseWriter->sanitizeQuery($query);
   $results = $thisDatabaseWriter->insert($query, $data);
@@ -88,13 +80,7 @@ if (isset($_POST["btnSubmit"])) {
   $playerIndex = 0; //number that will reference the playerArray
   for ($i=1; $i<=$formFldNumRounds; $i++) {
     $nextMatchCount = 1;
-    if ($formFldElim == 1) {
-      if ($i != $formFldNumRounds) {
-        $numMatches = $numMatches / 2;
-      }
-    } else {
-      $numMatches = $numMatches / 2;
-    }
+    $numMatches = $numMatches / 2;
     for ($j=1; $j<=$numMatches; $j++) {
       $data = array();
       $data[] = $primaryKey; //fnkBracketId
@@ -149,12 +135,6 @@ if (isset($_POST["btnSubmit"])) {
 <div class="formGroup centerText">
   <h2 class="loginH1">Enter your bracket name:</h2>
   <input type="text" name="bracketName" value="" />
-</div>
-
-<div class="formGroup centerText">
-  <h2 class="loginH1">Type of tournament bracket:</h2>
-  <input class="" type="radio" name="elimination" value="0"> Single
-  <input class="" type="radio" name="elimination" value="1"> Double
 </div>
 
 <div class="formGroup centerText">

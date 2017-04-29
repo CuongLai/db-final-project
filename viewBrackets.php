@@ -16,19 +16,13 @@
       print'<table class="viewBracketsTableContainer">';
         print'<tr class ="tableRow">';
           print'<th>Bracket Name</th>';
-          print'<th>Elimination Type</th>';
           print'<th># of Players</th>';
           print'<th>Status</th>';
         print'</tr>';
       print '<tr href="bracket.php?id=' . $result['pmkBracketId'] . '">';
       print '<td class="tableRow"><a href="bracket.php?id=' . $result['pmkBracketId'] . '">';
       print $result['fldBracketName'] . '</a></td>';
-      if ($result['fldElim'] == 0) {
-        print '<td>Single</td>';
-      }
-      else {
-        print '<td>Double</td>';
-      }
+
       print '<td>' . $result['fldNumPlayers'] . '</td>';
       if ($result['fldCompletion'] == 0) {
         print '<td>In-progress</td>';

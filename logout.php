@@ -10,7 +10,10 @@
   }
   session_destroy();
 ?>
-
-<h1>Thank you for using Brakets!</h1>
-<button class="mainBtn"><a href="index.php">Home</a></button>
-<button class="mainBtn"><a href="login.php?page=0">Log back in</a></button>
+<div class="createBracketContainer">
+  <div class="loginCenterButtons">
+    <h1 class="centerText customH2">Thank you for using Brakets!</h1>
+    <button class="matchBtn"><a class="matchLnkBtn" href="index.php">Home</a></button>
+    <button class="matchBtn"><a class="matchLnkBtn" href="login.php?page=0">Log back in</a></button>
+  </div>
+</div>

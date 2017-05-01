@@ -123,12 +123,12 @@ if (isset($_POST["btnSubmit"])) {
 <form action="#" method="post">
 <div class="formGroup centerText">
   <h2 class="loginH1">Enter your bracket name:</h2>
-  <input type="text" name="bracketName" value="" />
+  <input id="create" type="text" name="bracketName" value="" />
 </div>
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Enter number of entrants:</h2>
-  <select class="numNames" name="bracketSize">
+  <select id="create" class="numNames" name="bracketSize">
     <option value="4">4</option>
     <option value="8">8</option>
     <option value="16">16</option>
@@ -139,16 +139,16 @@ if (isset($_POST["btnSubmit"])) {
 <h2 class="loginH1">Enter entrant names:</h2>
 <div id="nameText" class="formGroup centerText">
   <div>
-    <input type="text" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
   </div>
   <div>
-    <input type="text" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
   </div>
   <div>
-    <input type="text" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
   </div>
   <div>
-    <input type="text" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
   </div>
 </div>
 
@@ -162,7 +162,7 @@ if (isset($_POST["btnSubmit"])) {
 <script>
   var nameInput =
   '<div>' +
-    '<input type="text" class="name" name="player[]" placeholder="Add new player">' +
+    '<input type="text" id="create" class="name" name="player[]" placeholder="Add new player">' +
   '</div>';
 
   $('.numNames').on('input', function(e) {

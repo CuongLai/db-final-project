@@ -22,7 +22,6 @@
       print '<tr href="bracket.php?id=' . $result['pmkBracketId'] . '">';
       print '<td class="tableRow"><a href="bracket.php?id=' . $result['pmkBracketId'] . '">';
       print $result['fldBracketName'] . '</a></td>';
-
       print '<td>' . $result['fldNumPlayers'] . '</td>';
       if ($result['fldCompletion'] == 0) {
         print '<td>In-progress</td>';

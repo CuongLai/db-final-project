@@ -365,6 +365,24 @@ td {
   border-bottom: 5px solid #3b7066;
 }
 
+#create {
+  width: 50%;
+  padding: 0px 10px 0px 10px;
+  margin: 3px 0;
+  box-sizing: border-box;
+  border: 2px solid #0dd3ac;
+  border-radius: 4px;
+  color: rgba(6, 7, 14, 0.6);
+  transition: .2s linear .1s;
+}
+
+#create:focus {
+  cursor: pointer;
+  outline: none;
+  color: #06070E;
+  border: 2px solid #29524A;
+}
+
 .bracket {
   display: flex;
   justify-content: space-between;
@@ -381,7 +399,7 @@ td {
   border-radius: 5px;
   color: #29524A;
   margin: 10px 0px 10px 0px;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 30px 10px 20px;
   font-weight: bold;
   font-size: 1.3em;
   border: 5px solid #94a187;
@@ -455,4 +473,24 @@ td {
   text-decoration: none;
   color: #FFEEED;
   font-size: 1.2em;
+}
+
+.scoreContainer {
+  font-size: 1.3em;
+  color: #29524A;
+  position: relative;
+  padding-left: 85%;
+  bottom: 54px;
+  font-weight: bold;
+}
+
+.matchEdit {
+  position: relative;
+  display: block;
+  margin: 0 auto 0 auto;
+  padding: 0 0 0 0;
+  bottom: 30px;
+  width: 50%;
+  text-decoration: none;
+  color: #b6bfbd;
 }

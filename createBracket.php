@@ -116,7 +116,7 @@ if (isset($_POST["btnSubmit"])) {
 
 <div class="middle-80 padding-10">
 <div class="createBracketContainer">
-  <h1 class="centerText customH2">Please create your bracket</h1>
+  <h1 class="centerText customH2">Please create your braket</h1>
 <article>
 </div>
 <div class="viewBracketsTableContainer">

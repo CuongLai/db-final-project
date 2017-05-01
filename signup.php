@@ -4,28 +4,28 @@ require "includes/top.php";
 <div class="middle-80">
 <div class="viewBracketsTitleContainer">
 
-  <h1 class="centerText customH1">Sign up for Brakets!</h1>
+  <h1 class="centerText customH2">Sign up for Brakets!</h1>
 <article>
 <form action="" method="post">
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Create your username:</h2>
-  <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>" />
+  <input id="signupInput" type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>" />
 </div>
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Create your password:</h2>
-  <input type="password" name="password" value="" />
+  <input id="signupInput" type="password" name="password" value="" />
 </div>
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Enter your email:</h2>
-  <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>" />
+  <input id="signupInput" type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>" />
 </div>
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Gender:</h2>
-  <select name="gender">
+  <select id="signupInput" name="gender">
     <option value="Male">Male</option>
     <option value="Female">Female</option>
   </select>
@@ -37,19 +37,19 @@ require "includes/top.php";
   $query = 'SELECT * FROM tblGames';
   $results = $thisDatabaseReader->select($query, '');
   foreach ($results as $result) {
-    print '<input type="checkbox" name="game[]" value="' . $result['pmkGamesId'] . '">' . $result['fldName'] . '</input>';
+    print '<input class="signUpMargin" type="checkbox" name="game[]" value="' . $result['pmkGamesId'] . '">' . $result['fldName'] . '</input>';
   }
   ?>
 </div>
 
 <div class="formGroup centerText">
   <h2 class="loginH1">Which of the following are you:</h2>
-  <input type="radio" name="userType" value="Tournament Organizer">Tournament Organizer</input>
-  <input type="radio" name="userType" value="Player">Player</input>
-  <input type="radio" name="userType" value="Staff">Staff</input>
+  <input class="signUpMargin" type="radio" name="userType" value="Tournament Organizer">Tournament Organizer</input>
+  <input class="signUpMargin" type="radio" name="userType" value="Player">Player</input>
+  <input class="signUpMargin" type="radio" name="userType" value="Staff">Staff</input>
 </div>
 
-<div class="loginCenterButtons">
+<div class="loginCenterButtons signUpBottom">
 <input class="mainBtn linkBtn" id="btnSubmit" name="btnSubmit" tabindex="900" type="submit" value="Sign Up" >
 </div>
 </form>

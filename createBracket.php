@@ -139,18 +139,19 @@ if (isset($_POST["btnSubmit"])) {
 <h2 class="loginH1">Enter entrant names:</h2>
 <div id="nameText" class="formGroup centerText">
   <div>
-    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player" onkeyup="suggestions(this.value)">
   </div>
   <div>
-    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player" onkeyup="suggestions(this.value)">
   </div>
   <div>
-    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player" onkeyup="suggestions(this.value)">
   </div>
   <div>
-    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player">
+    <input type="text" id="create" class="name" name="player[]" placeholder="Add new player" onkeyup="suggestions(this.value)">
   </div>
 </div>
+<div id="livesearch"></div>
 
 <input class="mainBtn linkBtn" id="btnSubmit" name="btnSubmit" tabindex="900" type="submit" value="Create Bracket" />
 </div>
@@ -162,7 +163,7 @@ if (isset($_POST["btnSubmit"])) {
 <script>
   var nameInput =
   '<div>' +
-    '<input type="text" id="create" class="name" name="player[]" placeholder="Add new player">' +
+    '<input type="text" id="create" class="name" name="player[]" placeholder="Add new player" onkeyup="suggestions(this.value)">' +
   '</div>';
 
   $('.numNames').on('input', function(e) {
@@ -176,6 +177,31 @@ if (isset($_POST["btnSubmit"])) {
       $('#nameText').append(nameInput);
     }
   }
+
+  function suggestions(str) {
+    if (str.length==0) {
+      document.getElementById("livesearch").innerHTML="";
+      document.getElementById("livesearch").style.border="0px";
+      return;
+    }
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+      if (this.readyState==4 && this.status==200) {
+        document.getElementById("livesearch").innerHTML=this.responseText;
+      }
+    }
+    xmlhttp.open("GET","livesearch.php?q="+str,true);
+    xmlhttp.send();
+  }
+
+  $(document).ready(function(){
+    $("#nameLink").click(function(){
+      var value = $(this).html();
+      var input = $('#create');
+      input.val(value);
+    });
+  });
+
 </script>
 
 <?php

@@ -12,13 +12,13 @@
         if ($PATH_PARTS['filename'] == 'createBracket') {
           print ' class="activePage" ';
         }
-        print '><a href="createBracket.php">Start a bracket</a></li>';
+        print '><a href="createBracket.php">Start A Braket</a></li>';
 
         print '<li ';
         if ($PATH_PARTS['filename'] == 'viewBrackets') {
           print ' class="activePage" ';
         }
-        print '><a href="viewBrackets.php">Your Brackets</a></li>';
+        print '><a href="viewBrackets.php">Your Brakets</a></li>';
 
         if (!isset($_SESSION['user'])) {
           print '<li ';

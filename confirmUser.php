@@ -7,7 +7,10 @@
   $query = 'UPDATE tblUsers SET fldConfirmed=? WHERE pmkUserId=?';
   $results = $thisDatabaseWriter->update($query, $data);
 ?>
-<h1>You just confirmed your account with Brakets!</h1>
-<p>Thanks for using Brakets!</p>
-<button class="mainBtn"><a href="index.php">Home</a></button>
-<button class="mainBtn"><a href="createBracket.php">Start your first bracket</a></button>
+<div class="createBracketContainer">
+  <div class="loginCenterButtons">
+    <h1 class="centerText customH2">You just confirmed your account with Brakets!</h1>
+    <button class="matchBtn"><a class="matchLnkBtn" href="index.php">Home</a></button>
+    <button class="matchBtn"><a class="matchLnkBtn" href="createBracket.php">Start your first bracket</a></button>
+  </div>
+</div>
